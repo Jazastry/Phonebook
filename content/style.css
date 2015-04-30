@@ -1,0 +1,31 @@
+form {
+    width: 200px;
+    background-color: grey;
+}
+form input {
+    width: 95%;
+}
+body>header {
+    background-color: #eee;
+    padding: 5px;
+}
+body>header img {
+    width: 150px;
+}
+header img, header ul, header li {
+    display: inline-block;
+    vertical-align: middle;
+}
+header ul {
+    list-style: none;
+    vertical-align: middle;
+}
+header li {
+    margin-left: 10px;
+}
+
+body>footer {
+    background-color: #eee;
+    padding: 5px;
+    text-align: center;
+}
