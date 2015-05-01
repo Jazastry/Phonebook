@@ -1,0 +1,82 @@
+html, body, form, input, p, h1,
+h2, h3, h4, h5, div, section, header
+ul, img, li {
+    padding: 0px;
+    margin: 0px;
+}
+$pading-ss-horizont: 5px;
+$pading-s-horizont: 20px;
+$pading-m-horizont: 40px;
+$pading-l-horizont: 150px;
+$pading-xl-horizont: 300px;
+$padding-main-vert: 10px;
+$light-brown: #cca410;
+$input-height: 25px;
+
+
+html {
+    width: 100%;
+    height: 100%;   
+    body {
+        margin-left: auto;
+        margin-right: auto;
+        height: 100%;
+        width: 1000px;
+         header {
+            background-color: $light-brown;
+            padding-left: $pading-s-horizont;
+            padding-top: $padding-main-vert;
+            padding-bottom: $padding-main-vert;
+            img {
+                height: 100px;
+            }
+            ul, li, img {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            li {
+                padding-left: $pading-s-horizont;           
+            }
+
+        }
+        .main-section {
+            height: 450px;
+            form {
+                outline: 1px solid #000;
+                margin-left: $pading-xl-horizont;
+                margin-right: $pading-xl-horizont;
+                margin-top: $pading-m-horizont;
+                padding: $pading-s-horizont;
+                label, input {
+                    display: block;
+                    height: $input-height;
+                    margin-top: $pading-ss-horizont;
+                }
+                input {
+                    width: 100%;
+                    /*margin-top: $pading-ss-horizont;*/
+                }
+                div {
+                    margin-left: $pading-s-horizont;
+                    margin-right: $pading-s-horizont;
+                }
+                button {
+                    height: $input-height;
+                    width: 40%;
+                    display: inline-block;
+                    margin-top: $pading-s-horizont;
+                    margin-left: $pading-s-horizont;
+                }
+                a {
+                    text-decoration: none;
+                }
+                h3 {
+                    margin-bottom: $pading-s-horizont;
+                }
+            }
+        }
+        footer {
+            text-align: center;
+        } 
+    }    
+}

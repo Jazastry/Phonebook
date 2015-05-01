@@ -1,11 +1,12 @@
-<label for="loginForm">Login Form</label>
 <form name="loginForm" method="POST">
-    <p></p>
+    <h3>Login Form</h3>
     <label for="username">User Name</label>
     <input type="tyext" name="username"/>
     <label for="password">Password</label>
     <input type="password" name="password"/>
-    <button type="submit">Submit</button>
-    <p></p>
+    <div>
+        <button type="submit">Submit</button>
+        <a href="/"><button type="button">Cancel</button></a>
+    </div>     
 </form>
 
