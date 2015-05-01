@@ -6,9 +6,11 @@ class AccountController extends BaseController {
     public function __construct($viewFolder) {
         parent::__construct(get_class());
         $this->db = new AccountModel();
+        $this->title = 'Register';
         $this->viewFolder = $viewFolder;
     }
     public function register() {
+        $this->title = 'Register';
         if ($this->isPost) {
             $username = $_POST['username'];
             $password = $_POST['password'];
@@ -25,7 +27,7 @@ class AccountController extends BaseController {
     }
     
     public function login() {
-              
+        $this->title = 'Login';
         $this->renderView($this->viewFolder, __FUNCTION__);
     } 
 }

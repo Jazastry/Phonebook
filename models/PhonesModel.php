@@ -7,8 +7,13 @@ class PhonesModel extends BaseModel {
         $userId = 1;
         $statement->bind_param('i', $userId);
         $statement->execute();
-        $result = $statement->get_result()->fetch_assoc();
+        $result_set = $statement->get_result();
+        $results = $this->processResults($result_set);
         
-        var_dump($result);
-    }    
+        return $results;
+    }
+    
+    public function addNew($params = array()) {
+        return $this->addNew($params);
+    }
 }
