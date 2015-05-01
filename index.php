@@ -47,6 +47,7 @@ if (method_exists($controllerInstance, $method)) {
     die("Cannot find method $method in controller $controllerClassName ");
 }
 
+//$match = preg_filter('/([A-Za-z_-])\w+/', $controllerFile, $controllerClassName);
 function __autoload($class_name) {
     if (file_exists("controllers/$class_name.php")) {
         include "controllers/$class_name.php";

@@ -18,9 +18,9 @@ class BaseController {
         //echo 'BaseController.';
     }
     
-    public function renderView($viewName = DEFAULT_METHOD) {
+    public function renderView($controller, $viewName = DEFAULT_METHOD) {       
         $current_template = 'views/' 
-                . $this->controllerName . '/' . $viewName . '.php';        
+                . $controller . '/' . $viewName . '.php';        
         include_once 'views/layouts/'. $this->layoutFolder .'/index.php';
     }
     
@@ -30,7 +30,7 @@ class BaseController {
     }
     
     public function redirect($controlerName, $actionName = DEFAULT_METHOD, $params = null) {
-        $url = '/' . urldecode($controlerName)
+        $url = '/' . urldecode($controlerName) . '/'
                 . urldecode($actionName);
         if ($params != null) {
             $encodedParams = array_map($params, 'urlencode');

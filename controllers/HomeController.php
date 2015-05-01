@@ -3,6 +3,6 @@
 class HomeController extends BaseController {
     
     function index() {
-        $this->renderView();
+        $this->renderView('home');
     }
 }

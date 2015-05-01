@@ -11,8 +11,8 @@
             <a href="/"><img src="/content/images/logo1.jpg"/></a>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/register">Register</a></li>
+                <li><a href="/account/login">Login</a></li>
+                <li><a href="/account/register">Register</a></li>
             </ul>
         </header>
 
