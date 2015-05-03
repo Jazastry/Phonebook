@@ -6,8 +6,8 @@
     <input type="tel" name="phone_number"/>
     <label for="email">Email</label>
     <input type="email" name="email"/>
-    <label for="addres">Address</label>
-    <input type="text" name="addres"/>
+    <label for="address">Address</label>
+    <input type="text" name="address"/>
      <div>
         <button type="submit">Submit</button>
         <a href="/"><button type="button">Cancel</button></a>

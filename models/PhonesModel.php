@@ -2,8 +2,11 @@
 
 class PhonesModel extends BaseModel {
     
+    protected $table = 'phones';
+    
+    
     public function getAll() {
-        $statement = self::$db->prepare("SELECT * FROM phones WHERE user_id = ?;");
+        $statement = self::$db->prepare("SELECT * FROM {$this->table} WHERE user_id = ?;");
         $userId = 1;
         $statement->bind_param('i', $userId);
         $statement->execute();
@@ -13,7 +16,7 @@ class PhonesModel extends BaseModel {
         return $results;
     }
     
-    public function addNew($params = array()) {
-        return $this->addNew($params);
+    public function addNew($element) {
+        return $this->add($element);
     }
 }

@@ -5,6 +5,7 @@ class BaseController {
     protected $controllerName;
     protected $layoutFolder;
     protected $isPost = false;
+    protected $user = array('user_name' => 'Pesho', 'user_id' => 1);
             
     function __construct($controllerName) {
         $this->controllerName = $controllerName;
@@ -12,6 +13,7 @@ class BaseController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->isPost = true;
         }
+        $this->check = new Check();
     }
     
     public function index() {

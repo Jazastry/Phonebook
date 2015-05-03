@@ -14,14 +14,16 @@ class PhonesController extends BaseController {
         if (isset($phones)) {
             $this->phones = $phones;
             $this->renderView($this->viewFolder);
-        }      
-        
+        }        
     }
     
     public function create() {
         if ($this->isPost) {
-            foreach ($_POST as $key => $value) {
-                echo $key . ' ' . $value;
+            $element = $this->check->formCheck($_POST);
+            $element['user_id'] = $this->user['user_id'];
+            $isCreated = $this->db->add($element);
+            if ($isCreated) {
+                $this->redirect('phones');
             }
         }
         
