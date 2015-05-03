@@ -3,12 +3,11 @@
 class HomeController extends BaseController {
     
     public function __construct($viewFolder) {
-        parent::__construct(get_class());
+        parent::__construct(get_class(), $viewFolder);
         $this->title = 'Home';
-        $this->viewFolder = $viewFolder;
     }
     
     function index() {
-        $this->renderView('home');
+        $this->renderView();
     }
 }

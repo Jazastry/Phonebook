@@ -5,11 +5,12 @@ class BaseController {
     protected $controllerName;
     protected $layoutFolder;
     protected $isPost = false;
-    protected $user = array('user_name' => 'Pesho', 'user_id' => 1);
+    protected $viewFolder;
             
-    function __construct($controllerName) {
+    function __construct($controllerName, $viewFolder) {
         $this->controllerName = $controllerName;
         $this->layoutFolder = DEFAULT_LAYOUT;
+        $this->viewFolder = $viewFolder;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->isPost = true;
         }        
@@ -20,9 +21,9 @@ class BaseController {
         //echo 'BaseController.';
     }
     
-    public function renderView($controller, $viewName = DEFAULT_METHOD) {       
+    public function renderView($viewName = DEFAULT_METHOD) {       
         $current_template = 'views/' 
-                . $controller . '/' . $viewName . '.php';        
+                . $this->viewFolder . '/' . $viewName . '.php';        
         include_once 'views/layouts/'. $this->layoutFolder .'/index.php';
     }
     

@@ -18,6 +18,14 @@ $logged_routing = false;
 $controller = DEFAULT_CONTROLLER;
 if (count($requestParts) >= 1 && !empty($requestParts[1])) {      
     $controller = $requestParts[1];
+    
+    if (0 === strpos($request, 'admin/')) {
+        $admin_routing = true;
+        include_once 'controllers/admin/master.php';
+        $request = substr($request, strlen('admin/'));
+        $components = explode('/', $request, 3);
+    }
+    
 }
 
 $method = DEFAULT_METHOD;

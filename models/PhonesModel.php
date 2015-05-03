@@ -17,6 +17,6 @@ class PhonesModel extends BaseModel {
     }
     
     public function addNew($element) {
-        return $this->add($element);
+        return $this->add($element, 'phones');
     }
 }
