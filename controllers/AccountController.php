@@ -28,6 +28,21 @@ class AccountController extends BaseController {
     
     public function login() {
         $this->title = 'Login';
+        if ($this->isPost) {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            
+            $auth = Auth::get_instance();
+            $isLogged = $auth->login($username, $password);
+            
+            if ($isLogged) {                
+                $this->redirect('phones');
+            } else {
+                $this->addErrorMessage('Register failed.');
+                $this->redirect('account', 'register');
+            } 
+        }  
+        
         $this->renderView($this->viewFolder, __FUNCTION__);
     } 
 }

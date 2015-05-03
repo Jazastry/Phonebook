@@ -1,19 +1,15 @@
 <?php
 
 abstract class BaseModel {
-    
-    protected static $db;
+
+    protected $db;
     
     public function __construct() {
-        if (self::$db == null) {
-            self::$db = new \mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-            self::$db->set_charset('utf8');
-            
-            if (self::$db->connect_errno) {
-                die('Can not connect to the database.');
-            }
-        }
-        $this->check = new Check();
+        
+        $db_object = Database::get_instance();        
+        $this->db = $db_object::get_db();
+        $this->validate = new Validate();
+        $this->limit = 0;
     }
     
     public function processResults($result_set){
@@ -21,7 +17,8 @@ abstract class BaseModel {
         
         if (! empty($result_set) && $result_set->num_rows > 0) {
             while ($row = $result_set->fetch_assoc()) {
-                $results[] = $row;
+                $rowDecoded = $this->validate->dataOutputValidate($row);
+                $results[] = $rowDecoded;
             }
         }
         
@@ -47,5 +44,24 @@ abstract class BaseModel {
             return true;
         }
         return false;
+    }
+    
+    public function find( $table, $limit, $where, $columns){
+        
+        $query = "SELECT {$columns} FROM {$table}";
+        
+        if (! empty($where)) {
+            $query .= " WHERE $where";
+        }
+        
+        if (! empty($limit)) {
+            $query .= " LIMIT $limit";
+        }
+        
+        $result_set = self::$db->query($query);
+        
+        $results = $this->process_results($result_set);
+        
+        return $results;
     }
 }

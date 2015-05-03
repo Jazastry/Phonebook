@@ -1,16 +1,13 @@
 <?php
 
-class Check {
+class Validate {
     
-    public function urlCheck( $params ) {
-        var_dump($params);
-        $match = preg_replace('/[^A-Za-z0-9\/]/', '', $params);
-        var_dump($match);
-        
+    public function urlValidate( $params ) {
+        $match = preg_replace('/[^A-Za-z0-9\/]/', '', $params);        
         return $match;
     }
     
-    public function formCheck( $params ) {
+    public function formValidate( $params ) {
         $result = array();
         foreach ($params as $key => $value) {
             $result[$key] = htmlentities($value);
@@ -19,7 +16,7 @@ class Check {
         return $result;
     }
     
-    public function dataOutputCheck( $params ) {
+    public function dataOutputValidate( $params ) {
         $result = array();
         foreach ($params as $key => $value) {
             $result[$key] = html_entity_decode($value);

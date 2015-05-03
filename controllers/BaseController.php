@@ -13,7 +13,6 @@ class BaseController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->isPost = true;
         }
-        $this->check = new Check();
     }
     
     public function index() {

@@ -10,8 +10,8 @@ $request = $_SERVER['REQUEST_URI'];
 $requestHome = '/' . DX_ROOT_PAHT;
 $requestParts = explode('/', parse_url($request, PHP_URL_PATH));
 
-$checker = new Check();
-$requestParts = $checker->urlCheck($requestParts);
+$validator = new Validate();
+$requestParts = $validator->urlValidate($requestParts);
 
 $logged_routing = false;
 

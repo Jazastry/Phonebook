@@ -7,6 +7,13 @@ class PhonesController extends BaseController {
         $this->db = new PhonesModel();
         $this->title = 'Phones';
         $this->viewFolder = $viewFolder;
+        
+        $auth = Auth::get_instance();
+        $logged_user = $auth->get_logged_user();
+        
+        if ( empty( $logged_user )) {
+            die( 'No access allowed here.' );
+        }
     }
     
     public function index() {
