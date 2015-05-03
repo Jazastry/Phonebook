@@ -1,9 +1,9 @@
 <form method="POST">
     <h3>Create new record</h3>
-    <label for="phone_name">Name</label>
-    <input type="text" name="phone_name"/>
-    <label for="phone_number">Phone Number</label>
-    <input type="tel" name="phone_number"/>
+    <label for="name">Name</label>
+    <input type="text" name="name"/>
+    <label for="number">Phone Number</label>
+    <input type="tel" name="number"/>
     <label for="email">Email</label>
     <input type="email" name="email"/>
     <label for="address">Address</label>

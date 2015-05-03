@@ -12,7 +12,8 @@ class BaseController {
         $this->layoutFolder = DEFAULT_LAYOUT;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->isPost = true;
-        }
+        }        
+        $this->validate = new Validate();
     }
     
     public function index() {

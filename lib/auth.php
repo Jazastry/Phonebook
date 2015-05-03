@@ -50,7 +50,9 @@ class Auth {
     }
     
     public function userExists ( $username ) {
-        $statement = $this->db->prepare("SELECT * FROM users WHERE username = ?");
+        $db_obj = Database::get_instance();
+        $db = $db_obj->get_db();
+        $statement = $db->prepare("SELECT * FROM users WHERE username = ?");
         $statement->bind_param("s", $username);
         $statement->execute();
         $result = $statement->get_result()->fetch_assoc();

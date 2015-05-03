@@ -6,7 +6,14 @@ class AccountModel extends BaseModel {
         $auth = Auth::get_instance();       
         if ($auth->userExists($username)) {
             return false;            
-        }      
+        }
+        $user = array(
+            'username' => $username,
+            'password' => $password
+        );
+                
+        $this->validate->form($user);
+        return $this->add($user, 'users');
     }
     
     public function login($username, $password) {

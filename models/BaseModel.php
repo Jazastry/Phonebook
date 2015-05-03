@@ -25,22 +25,22 @@ abstract class BaseModel {
         return $results;
     }
     
-    public function add ( $element ) {
+    public function add ($element, $table) {
         $keys = array_keys ($element);
         $values = array();
         
         foreach ( $element as $key => $value ) {
-            $values[] = "'" . self::$db->real_escape_string($value) . "'";
+            $values[] = "'" . $this->db->real_escape_string($value) . "'";
         }
         
         $keys = implode($keys, ',');
         $values = implode( $values, ',');
         
-        $query = " INSERT INTO {$this->table}($keys) VALUES($values)";
+        $query = " INSERT INTO {$table}($keys) VALUES($values)";
         
-        self::$db->query($query);
+        $this->db->query($query);
         
-        if (self::$db->affected_rows > 0) {
+        if ($this->db->affected_rows > 0) {
             return true;
         }
         return false;
@@ -58,7 +58,7 @@ abstract class BaseModel {
             $query .= " LIMIT $limit";
         }
         
-        $result_set = self::$db->query($query);
+        $result_set = $this->db->query($query);
         
         $results = $this->process_results($result_set);
         

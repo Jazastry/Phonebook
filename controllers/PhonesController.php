@@ -26,7 +26,7 @@ class PhonesController extends BaseController {
     
     public function create() {
         if ($this->isPost) {
-            $element = $this->check->formCheck($_POST);
+            $element = $this->validate->form($_POST);
             $element['user_id'] = $this->user['user_id'];
             $isCreated = $this->db->add($element);
             if ($isCreated) {

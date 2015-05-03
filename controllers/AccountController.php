@@ -5,7 +5,7 @@ class AccountController extends BaseController {
     
     public function __construct($viewFolder) {
         parent::__construct(get_class());
-        $this->db = new AccountModel();
+        $this->model = new AccountModel();
         $this->title = 'Register';
         $this->viewFolder = $viewFolder;
     }
@@ -15,7 +15,7 @@ class AccountController extends BaseController {
             $username = $_POST['username'];
             $password = $_POST['password'];
             
-            $isRegistred = $this->db->register($username, $password);
+            $isRegistred = $this->model->register($username, $password);
             if ($isRegistred) {
                 $this->redirect('phones');
             } else {
