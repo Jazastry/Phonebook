@@ -12,6 +12,52 @@ html {
     margin-right: auto;
     height: 100%;
     width: 1000px; }
+    html body .messages {
+      position: absolute;
+      width: 25%;
+      margin-left: 50%;
+      text-align: center; }
+      html body .messages ul {
+        list-style: none; }
+      html body .messages li {
+        border: 1px solid #000;
+        border-radius: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        -moz-animation-name: fadeOut;
+        -moz-animation-fill-mode: forwards;
+        -moz-animation-iteration-count: 1;
+        -moz-animation-timing-function: ease-in;
+        -moz-animation-duration: 3s;
+        -webkit-animation-name: fadeOut;
+        -webkit-animation-fill-mode: forwards;
+        -webkit-animation-iteration-count: 1;
+        -webkit-animation-timing-function: ease-in;
+        -webkit-animation-duration: 3s;
+        animation-name: fadeOut;
+        animation-fill-mode: forwards;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in;
+        animation-duration: 3s; }
+@-moz-keyframes fadeOut {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+@keyframes fadeOut {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+      html body .messages li.infoMessage {
+        background-color: #00f669; }
+      html body .messages li.errorMessage {
+        background-color: #ff3325; }
     html body header {
       background-color: #cca410;
       padding-left: 20px;
@@ -52,6 +98,15 @@ html {
           text-decoration: none; }
         html body .main-section form h3 {
           margin-bottom: 20px; }
+      html body .main-section .phones ul {
+        list-style: none;
+        width: 100%; }
+        html body .main-section .phones ul a {
+          text-decoration: none; }
+        html body .main-section .phones ul li {
+          width: 100%;
+          background-color: #ffcc00;
+          outline: 1px solid #000; }
     html body footer {
       text-align: center; }
 

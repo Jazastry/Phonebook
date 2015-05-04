@@ -6,6 +6,7 @@ class BaseController {
     protected $layoutFolder;
     protected $isPost = false;
     protected $viewFolder;
+    protected $messages = array();
             
     function __construct($controllerName, $viewFolder) {
         $this->controllerName = $controllerName;
@@ -21,7 +22,7 @@ class BaseController {
         //echo 'BaseController.';
     }
     
-    public function renderView($viewName = DEFAULT_METHOD) {       
+    public function renderView($viewName = DEFAULT_METHOD) {
         $current_template = 'views/' 
                 . $this->viewFolder . '/' . $viewName . '.php';        
         include_once 'views/layouts/'. $this->layoutFolder .'/index.php';

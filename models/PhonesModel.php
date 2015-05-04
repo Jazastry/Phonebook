@@ -2,21 +2,26 @@
 
 class PhonesModel extends BaseModel {
     
-    protected $table = 'phones';
+    public function __construct($args = array()) {
+        parent::__construct(array('table' => 'phones'));
+    }    
     
-    
-    public function getAll() {
-        $statement = $this->db->prepare("SELECT * FROM {$this->table} WHERE user_id = ?;");
-        $userId = 1;
-        $statement->bind_param('i', $userId);
-        $statement->execute();
-        $result_set = $statement->get_result();
-        $results = $this->processResults($result_set);
+    public function getAll($userId) {        
+        $results = $this->find();
         
         return $results;
     }
     
     public function addNew($element) {
-        return $this->add($element, 'phones');
+        return $this->add($element);
+    }
+    
+    public function customFields( $phoneId ) {
+        return $this->find(
+            array(
+                'table' => 'custom_fields',
+                'where' => 'phone_id = '. $phoneId
+            )
+        );      
     }
 }

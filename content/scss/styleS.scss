@@ -11,6 +11,9 @@ $pading-l-horizont: 150px;
 $pading-xl-horizont: 300px;
 $padding-main-vert: 10px;
 $light-brown: #cca410;
+$light-green: #00f669;
+$light-red: #ff3325;
+$dark-yellow: #ffcc00;
 $input-height: 25px;
 
 
@@ -22,6 +25,65 @@ html {
         margin-right: auto;
         height: 100%;
         width: 1000px;
+        .messages {
+            position: absolute;
+            width: 25%;
+            margin-left: 50%;
+            text-align: center;
+            ul {
+                list-style: none;
+            }            
+            li {
+                border: 1px solid #000;
+                border-radius: 5px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                
+                -moz-animation-name: fadeOut;
+                -moz-animation-fill-mode:forwards;
+                -moz-animation-iteration-count: 1;
+                -moz-animation-timing-function: ease-in;
+                -moz-animation-duration: 3s;
+
+                -webkit-animation-name: fadeOut;
+                -webkit-animation-fill-mode:forwards;
+                -webkit-animation-iteration-count: 1;
+                -webkit-animation-timing-function: ease-in;
+                -webkit-animation-duration: 3s;
+
+                animation-name: fadeOut;
+                animation-fill-mode:forwards;
+                animation-iteration-count: 1;
+                animation-timing-function: ease-in;
+                animation-duration: 3s;
+            }
+            
+            @-moz-keyframes fadeOut {
+                0% { opacity: 1;}
+                100% { 
+                    opacity: 0;
+                }
+            }
+            @-webkit-keyframes fadeOut {
+                0% { opacity: 1;}
+                100% { 
+                    opacity: 0;
+                }
+            }
+            @keyframes fadeOut {
+                0% { opacity: 1;}
+                100% {
+                    opacity: 0;
+                }
+            }
+            
+            li.infoMessage {
+                background-color: $light-green;
+            }
+            li.errorMessage {
+                background-color: $light-red;
+            }
+        }        
          header {
             background-color: $light-brown;
             padding-left: $pading-s-horizont;
@@ -72,6 +134,21 @@ html {
                 }
                 h3 {
                     margin-bottom: $pading-s-horizont;
+                }
+            }
+            .phones {
+                ul {
+                    list-style: none;
+                    width: 100%;
+                    
+                    a {
+                       text-decoration: none;
+                    }
+                    li {
+                        width : 100%;
+                        background-color: $dark-yellow;
+                        outline: 1px solid #000;
+                    }
                 }
             }
         }

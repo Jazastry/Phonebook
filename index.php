@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 define('DX_ROOT_DIR', dirname(__FILE__). '/'); // C:/ .../phonebook
 define('DX_ROOT_PAHT', basename(dirname(__FILE__)) . '/'); //  phonebook/'
 
@@ -35,7 +35,7 @@ if (count($requestParts) >= 2 && !empty($requestParts[2])) {
 
 $params = array();
 if (count($requestParts) >= 3 && !empty($requestParts[3])) {
-    $params = array_splice($requestParts, 2);
+    $params = array_splice($requestParts, 3);
 }
 
 $controllerClassName = ucfirst ($controller) . 'Controller';

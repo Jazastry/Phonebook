@@ -13,10 +13,21 @@ class AccountController extends BaseController {
         if ($this->isPost) {
             $username = $_POST['username'];
             $password = $_POST['password'];
+            $isRegistred = false;
             
-            $isRegistred = $this->model->register($username, $password);
+            $auth = Auth::get_instance();       
+            if (! $auth->userExists($username)) {            
+                $user = array(
+                    'username' => $username,
+                    'password' => $password
+                );                
+                $this->validate->form($user);
+                $isRegistred = $this->model->add($user);
+            }            
+            
             if ($isRegistred) {
-                $this->redirect('phones');
+                $this->addInfoMessage('Successfull register. Now login.');
+                $this->redirect('account', 'login');                
             } else {
                 $this->addErrorMessage('Register failed.');
             } 
@@ -34,10 +45,11 @@ class AccountController extends BaseController {
             $auth = Auth::get_instance();
             $isLogged = $auth->login($username, $password);
             
-            if ($isLogged) {                
+            if ($isLogged) {
+                $this->addInfoMessage('Successfull login.');
                 $this->redirect('phones');
             } else {
-                $this->addErrorMessage('Register failed.');
+                $this->addErrorMessage('Login failed.');
                 $this->redirect('account', 'register');
             } 
         }  
@@ -46,15 +58,8 @@ class AccountController extends BaseController {
     }
     
     public function logout() {
-        // Initialize the session.
-        // If you are using session_name("something"), don't forget it now!
         session_start();
-
-        // Unset all of the session variables.
         $_SESSION = array();
-
-        // If it's desired to kill the session, also delete the session cookie.
-        // Note: This will destroy the session, and not just the session data!
         if (ini_get("session.use_cookies")) {
             $params = session_get_cookie_params();
             setcookie(session_name(), '', time() - 42000,
@@ -62,9 +67,7 @@ class AccountController extends BaseController {
                 $params["secure"], $params["httponly"]
             );
         }
-
-        // Finally, destroy the session.
-        session_destroy();
+        $this->addInfoMessage('Log out successfull.');
         $this->redirect('home');
     }
 }

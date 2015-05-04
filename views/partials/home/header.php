@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="/content/css/styleS.css"/>
     </head>
     <body>
+        <?php include_once 'messages.php'; ?>
         <header>
             <a href="/"><img src="/content/images/logo1.jpg"/></a>
             <ul>
