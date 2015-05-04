@@ -53,23 +53,6 @@ class PhonesController extends BaseController {
     }
     
     public function custom( $action ) {
-        if (! empty($_POST['custom'])) {
-            $this->phone = array(
-                'name' => $_POST['name'],
-                'phone' => $_POST['phone'],
-                'email' => $_POST['email'],
-                'address' => $_POST['address']
-            );
-            $this->custom = $_POST['custom'];
-                        
-            if ($action[0] == 1) {
-                $_POST['custom'] += 1;
-            }
-            if ($action[0] == 2) {
-                $_POST['custom'] -= 1;
-            }            
-        }
         
-        $this->renderView('create');
     }
 }

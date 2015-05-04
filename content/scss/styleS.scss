@@ -102,7 +102,7 @@ html {
 
         }
         .main-section {
-            height: 450px;
+            height: 80%;
             form {
                 outline: 1px solid #000;
                 margin-left: $pading-xl-horizont;
@@ -134,6 +134,16 @@ html {
                 }
                 h3 {
                     margin-bottom: $pading-s-horizont;
+                }
+                .customField {
+                    margin-left: 0px;
+                    margin-right: 0px;
+                    div {
+                        display: inline-block;
+                        width: 47%;
+                        margin-left: $pading-ss-horizont;
+                        margin-right: $pading-ss-horizont;
+                    }
                 }
             }
             .phones {

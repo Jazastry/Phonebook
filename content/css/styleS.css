@@ -71,7 +71,7 @@ html {
       html body header li {
         padding-left: 20px; }
     html body .main-section {
-      height: 450px; }
+      height: 80%; }
       html body .main-section form {
         outline: 1px solid #000;
         margin-left: 300px;
@@ -98,6 +98,14 @@ html {
           text-decoration: none; }
         html body .main-section form h3 {
           margin-bottom: 20px; }
+        html body .main-section form .customField {
+          margin-left: 0px;
+          margin-right: 0px; }
+          html body .main-section form .customField div {
+            display: inline-block;
+            width: 47%;
+            margin-left: 5px;
+            margin-right: 5px; }
       html body .main-section .phones ul {
         list-style: none;
         width: 100%; }
