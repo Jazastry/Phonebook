@@ -18,22 +18,28 @@ class PhonesController extends BaseController {
     
     public function index() {
         $userId = $this->user['id'];
-        $phones = $this->model->getAll($userId);
-        if (isset($phones)) {
-            $this->phones = $phones;
-            $this->renderView();
-        }        
+        $phones = $this->model->getAll($userId); 
+        $this->phones = $phones;        
+        if (count($phones) == 0) {
+            $this->addInfoMessage('You don`t have phone records. Go to Create Record if you want to add one.');
+        }
+        $this->renderView();
     }
     
-    public function create() {
+    public function create() { // field_name, field_value
         if ($this->isPost) {
-            $element = $this->validate->form($_POST);
-            $element['user_id'] = $this->user['id'];
-            $isCreated = $this->model->addNew($element);
+          
+            $params = $this->validate->form($_POST);         
+            
+            $params['user_id'] = $this->user['id'];            
+            $isCreated = $this->model->addNew($params);
             
             if ($isCreated) {
                 $this->addInfoMessage('Reccord created.');
-                $this->redirect('phones');
+                $this->redirect();
+            }
+            if (! $isCreated) {
+                $this->addErrorMessage('Reccord was not created.');
             }
         }
 
@@ -50,9 +56,5 @@ class PhonesController extends BaseController {
     
     public function update( $id ) {
         echo ' In Update';
-    }
-    
-    public function custom( $action ) {
-        
     }
 }

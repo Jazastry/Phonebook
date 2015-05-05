@@ -9,23 +9,19 @@ include_once './controllers/BaseController.php';
 $request = $_SERVER['REQUEST_URI'];
 $requestHome = '/' . DX_ROOT_PAHT;
 $requestParts = explode('/', parse_url($request, PHP_URL_PATH));
+$loggedRouting = false;
 
 $validator = new Validate();
 $requestParts = $validator->urlValidate($requestParts);
 
-$logged_routing = false;
-
 $controller = DEFAULT_CONTROLLER;
-if (count($requestParts) >= 1 && !empty($requestParts[1])) {      
-    $controller = $requestParts[1];
-    
-    if (0 === strpos($request, 'admin/')) {
-        $admin_routing = true;
-        include_once 'controllers/admin/master.php';
-        $request = substr($request, strlen('admin/'));
-        $components = explode('/', $request, 3);
+if (count($requestParts) >= 1 && !empty($requestParts[1])) {   
+    if ($requestParts[1] == 'logged') {
+        unset($requestParts[1]);
+        $requestParts = array_values($requestParts);
+        $loggedRouting = true;
     }
-    
+     $controller = $requestParts[1];
 }
 
 $method = DEFAULT_METHOD;
@@ -38,8 +34,11 @@ if (count($requestParts) >= 3 && !empty($requestParts[3])) {
     $params = array_splice($requestParts, 3);
 }
 
-$controllerClassName = ucfirst ($controller) . 'Controller';
-$controllerFile = ucfirst ($controller) . 'Controller.php';
+//$loggedNamespace = $loggedRouting ? '\Logged\\' : '';
+$controllerClassName =  ucfirst ($controller) . 'Controller';
+
+//$loggedFolder = $loggedRouting ? 'controllers/logged/' : '';
+//$controllerFile = $loggedFolder . ucfirst ($controller) . 'Controller.php';
 
 if (class_exists($controllerClassName)) {
     $controllerInstance = new $controllerClassName($controller);
@@ -53,8 +52,7 @@ if (method_exists($controllerInstance, $method)) {
     die("Cannot find method $method in controller $controllerClassName ");
 }
 
-
-function __autoload($class_name) {
+function __autoload($class_name) {    
     if (file_exists("controllers/$class_name.php")) {
         include "controllers/$class_name.php";
     }

@@ -16,6 +16,12 @@ class BaseController {
             $this->isPost = true;
         }        
         $this->validate = new Validate();
+        $auth = Auth::get_instance();
+        $this->user = $auth->get_logged_user();
+        if (! empty( $this->user )) {
+            $this->layoutFolder = LOGGED_LAYOUT;
+            $this->viewFolder = 'logged/' . $viewFolder;
+        }
     }
     
     public function index() {
@@ -34,6 +40,9 @@ class BaseController {
     }
     
     public function redirect($controlerName, $actionName = DEFAULT_METHOD, $params = null) {
+        if (empty($controlerName)) {
+            $controlerName = $this->viewFolder;
+        }
         $url = '/' . urldecode($controlerName) . '/'
                 . urldecode($actionName);
         if ($params != null) {

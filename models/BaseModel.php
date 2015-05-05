@@ -48,7 +48,12 @@ abstract class BaseModel {
         ))[0];
     }
     
-    public function add ($element) {
+    public function add ($element, $tableIn = null) {
+        $table = $this->table;
+        if ($tableIn !== null) {
+            $table = $tableIn;
+        }
+        
         $keys = array_keys ($element);
         $values = array();
         
@@ -59,14 +64,19 @@ abstract class BaseModel {
         $keys = implode($keys, ',');
         $values = implode( $values, ',');
         
-        $query = " INSERT INTO {$this->table}($keys) VALUES($values)";
-        
+        $query = " INSERT INTO {$table}($keys) VALUES($values);";
+                
         $this->db->query($query);
+        $err = $this->db->error;
+        $result = array();
         
-        if ($this->db->affected_rows > 0) {
-            return true;
+        if (! empty($this->db->insert_id)) {            
+            $result['entryId'] = $this->db->insert_id;
+            $result['success'] = true;
+            return $result;
         }
-        return false;
+        
+        return $result['success'] = false;
     }
     
     public function find($argsIn = array()){

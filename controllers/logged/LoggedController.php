@@ -1,9 +1,9 @@
 <?php
-namespace Logged;
+namespace Logged\Controllers;
 
-class BaseLoggedController extends \Controllers\BaseController {
+class LoggedController extends \Controllers\BaseController {
     
-    public function __construct( $controllerName = '\Logged\BaseLoggedController',
+    public function __construct( $controllerName = '\Logged\LoggedController',
             $viewFolder = '') {        
         parent::__construct( $controllerName, $viewFolder);
         

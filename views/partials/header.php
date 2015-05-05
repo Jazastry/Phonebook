@@ -13,14 +13,11 @@
     <body>
         <?php include_once 'messages.php'; ?>
         <header>
-            <a href="/"><img src="/content/images/logo1.jpg"/></a>
+            <h1>Phone Book</h1>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/account/login">Login</a></li>
-                <li><a href="/account/register">Register</a></li>
-                <li><a href="/phones">Phones</a></li>
-                <li><a href="/phones/create">Create Record</a></li>
-                <li><a href="/account/logout">Logout</a></li>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/account/login">LOGIN</a></li>
+                <li><a href="/account/register">REGISTER</a></li>
             </ul>
         </header>
 

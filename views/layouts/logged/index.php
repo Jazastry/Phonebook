@@ -1,4 +1,6 @@
-<?php include_once DX_ROOT_DIR . '/views/partials/home/header.php'; ?>
- <?php include_once $current_template; ?>
-<?php include_once DX_ROOT_DIR . '/views/partials/home/footer.php'; ?>
+<?php include_once DX_ROOT_DIR . '/views/logged/partials/header.php'; ?>
+<section class="main-section">
+<?php include_once $current_template; ?>
+</section>
+<?php include_once DX_ROOT_DIR . '/views/logged/partials/footer.php'; ?>
 

@@ -1,9 +1,10 @@
 <?php
+namespace Logged\Controllers;
 
-class PhonesController extends BaseController {
+class PhonesController extends LoggedController {
     
-    public function __construct() {
-        parent::__construct(get_class(), 'phones');
+    public function __construct($viewFolder) {
+        parent::__construct(get_class(), $viewFolder);
         $this->model = new PhonesModel();
         $this->title = 'Phones';       
         

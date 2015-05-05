@@ -47,9 +47,9 @@ class AccountController extends BaseController {
             
             if ($isLogged) {
                 $this->addInfoMessage('Successfull login.');
-                $this->redirect('phones');
+                $this->redirect('logged/phones');
             } else {
-                $this->addErrorMessage('Login failed.');
+                $this->addErrorMessage('Login failed. If you don`t have account please register first.');
                 $this->redirect('account', 'register');
             } 
         }  

@@ -10,6 +10,6 @@
     <input type="text" name="address"/>
      <div>
         <button type="submit">Submit</button>
-        <a href="/"><button type="button">Cancel</button></a>
+        <a href="/phones"><button type="button">Cancel</button></a>
     </div> 
 </form>

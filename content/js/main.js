@@ -10,11 +10,11 @@ $(document).ready(function() {
             '<div class="customField">' +
                 '<div>'+ 
                     '<label for="field_name">Field name</label>'+
-                    '<input type="text" name="field_name'+elementCount+'"/>'+
+                    '<input type="text" name="field'+elementCount+'_name"/>'+
                 '</div>' +
                 '<div>' +
                     '<label for="field_value">Field value</label>' +
-                    '<input type="text" name="field_value'+elementCount+'"/>' +
+                    '<input type="text" name="field'+elementCount+'_value"/>' +
                 '</div>' +
             '</div>'
         );

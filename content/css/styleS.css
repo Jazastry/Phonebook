@@ -6,12 +6,14 @@ ul, img, li {
 
 html {
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  background-color: #333333; }
   html body {
     margin-left: auto;
     margin-right: auto;
-    height: 100%;
-    width: 1000px; }
+    height: 200%;
+    width: 1000px;
+    background-color: #999999; }
     html body .messages {
       position: absolute;
       width: 25%;
@@ -28,17 +30,17 @@ html {
         -moz-animation-fill-mode: forwards;
         -moz-animation-iteration-count: 1;
         -moz-animation-timing-function: ease-in;
-        -moz-animation-duration: 3s;
+        -moz-animation-duration: 6s;
         -webkit-animation-name: fadeOut;
         -webkit-animation-fill-mode: forwards;
         -webkit-animation-iteration-count: 1;
         -webkit-animation-timing-function: ease-in;
-        -webkit-animation-duration: 3s;
+        -webkit-animation-duration: 6s;
         animation-name: fadeOut;
         animation-fill-mode: forwards;
         animation-iteration-count: 1;
         animation-timing-function: ease-in;
-        animation-duration: 3s; }
+        animation-duration: 6s; }
 @-moz-keyframes fadeOut {
   0% {
     opacity: 1; }
@@ -62,14 +64,30 @@ html {
       background-color: #cca410;
       padding-left: 20px;
       padding-top: 10px;
-      padding-bottom: 10px; }
+      padding-bottom: 10px;
+      height: 80px; }
       html body header img {
         height: 100px; }
       html body header ul, html body header li, html body header img {
         display: inline-block;
         vertical-align: middle; }
       html body header li {
-        padding-left: 20px; }
+        padding-left: 20px;
+        padding-right: 20px;
+        border-left: 1px solid #000;
+        border-right: 1px solid #000; }
+      html body header ul {
+        position: relative;
+        width: 100%;
+        border: 1px solid red; }
+      html body header a {
+        color: #000;
+        text-decoration: none; }
+      html body header .rightSide {
+        position: absolute;
+        right: 20px;
+        top: 0px;
+        vertical-align: middle; }
     html body .main-section {
       height: 80%; }
       html body .main-section form {
@@ -108,10 +126,12 @@ html {
             margin-right: 5px; }
       html body .main-section .phones ul {
         list-style: none;
-        width: 100%; }
+        width: 90%; }
         html body .main-section .phones ul a {
-          text-decoration: none; }
+          text-decoration: none;
+          color: #000; }
         html body .main-section .phones ul li {
+          height: 25px;
           width: 100%;
           background-color: #ffcc00;
           outline: 1px solid #000; }

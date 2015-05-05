@@ -6,14 +6,39 @@ class PhonesModel extends BaseModel {
         parent::__construct(array('table' => 'phones'));
     }    
     
-    public function getAll($userId) {        
-        $results = $this->find();
+    public function getAll($userId) {
+        $args = array(
+            'where' => 'user_id = ' . $userId
+        );
+        $results = $this->find($args);
         
         return $results;
     }
     
-    public function addNew($element) {
-        return $this->add($element);
+    public function addNew($element) {        
+        $utils = new Utilities();
+        
+        $customFields = $utils->extractCustomFields($element);        
+        $paramsCleaned = $utils->fieldsRemove($element);
+        $phoneInsertResult = $this->add($paramsCleaned);
+        
+        $result = $phoneInsertResult;
+        
+        if ($phoneInsertResult['success'] && count($customFields) > 0) {
+            try {
+                $pairs =  $utils->extractPairs($customFields);
+                $fieldsReady = $utils->fieldsKeysCleanup($pairs);
+            } catch (Exception $ex) {
+                throw new Exception('fields');
+            }
+            
+            foreach ($fieldsReady as $fieldPair) {
+                $fieldPair['phone_id'] = $phoneInsertResult['entryId'];
+                $fieldsInsertResult = $this->add($fieldPair, 'custom_fields');
+            }
+        }
+        
+        return $result['success'];
     }
     
     public function customFields( $phoneId ) {

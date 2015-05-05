@@ -19,12 +19,14 @@ $input-height: 25px;
 
 html {
     width: 100%;
-    height: 100%;   
+    height: 100%;
+    background-color: #333333;
     body {
         margin-left: auto;
         margin-right: auto;
-        height: 100%;
+        height: 200%;
         width: 1000px;
+        background-color: #999999;
         .messages {
             position: absolute;
             width: 25%;
@@ -43,19 +45,19 @@ html {
                 -moz-animation-fill-mode:forwards;
                 -moz-animation-iteration-count: 1;
                 -moz-animation-timing-function: ease-in;
-                -moz-animation-duration: 3s;
+                -moz-animation-duration: 6s;
 
                 -webkit-animation-name: fadeOut;
                 -webkit-animation-fill-mode:forwards;
                 -webkit-animation-iteration-count: 1;
                 -webkit-animation-timing-function: ease-in;
-                -webkit-animation-duration: 3s;
+                -webkit-animation-duration: 6s;
 
                 animation-name: fadeOut;
                 animation-fill-mode:forwards;
                 animation-iteration-count: 1;
                 animation-timing-function: ease-in;
-                animation-duration: 3s;
+                animation-duration: 6s;
             }
             
             @-moz-keyframes fadeOut {
@@ -89,6 +91,7 @@ html {
             padding-left: $pading-s-horizont;
             padding-top: $padding-main-vert;
             padding-bottom: $padding-main-vert;
+            height: 80px;
             img {
                 height: 100px;
             }
@@ -97,9 +100,26 @@ html {
                 vertical-align: middle;
             }
             li {
-                padding-left: $pading-s-horizont;           
+                padding-left: $pading-s-horizont;
+                padding-right: $pading-s-horizont;
+                border-left: 1px solid #000;
+                border-right: 1px solid #000;
             }
-
+            ul {
+                position: relative;
+                width: 100%;
+                border: 1px solid red;
+            }
+            a {
+                color: #000;
+                text-decoration: none;               
+            }
+            .rightSide {
+                position: absolute;
+                right: $pading-s-horizont;
+                top: 0px;
+                vertical-align: middle;
+            }
         }
         .main-section {
             height: 80%;
@@ -149,12 +169,13 @@ html {
             .phones {
                 ul {
                     list-style: none;
-                    width: 100%;
-                    
+                    width: 90%;                    
                     a {
                        text-decoration: none;
+                       color: #000;
                     }
                     li {
+                        height: $input-height;
                         width : 100%;
                         background-color: $dark-yellow;
                         outline: 1px solid #000;

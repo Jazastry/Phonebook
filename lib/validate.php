@@ -8,6 +8,7 @@ class Validate {
     }
     
     public function form( $params ) {
+        $utils = new Utilities();
         $result = array();
         foreach ($params as $key => $value) {
             
@@ -39,6 +40,10 @@ class Validate {
                 $result[$key] = $this->executeValidation($value, $key, 'Username');
             }
             
+            if ($utils->startsWith($key, 'field')) {
+                $result[$key] = $this->executeValidation($value, 'field', 'Password');
+            }
+            
         }
         
         return $result;
@@ -55,7 +60,7 @@ class Validate {
     private function executeValidation($valIn, $func, $message) {
         $isValid = self::{$func}($valIn);
         if($isValid) {
-            return htmlentities($valIn);
+            return htmlspecialchars($valIn);
         } else {
             die("Invalid {$message}.");
         }
@@ -98,6 +103,13 @@ class Validate {
             return false;
         }
         return (bool)preg_match('/^(([a-zA-Z0-9]+[.\-_*]*)*[a-zA-Z0-9]*)+$/', $val);
+    }
+    
+    public static function field($val) {
+        if (strlen($val) > 100 || strlen($val) < 1) {
+            return false;
+        }
+        return true;
     }
 
     public static function cleanWhitespaces($val) {
