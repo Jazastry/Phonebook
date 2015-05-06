@@ -44,6 +44,10 @@ class Validate {
                 $result[$key] = $this->executeValidation($value, 'field', 'custom field');
             }
             
+            if ($utils->startsWith($key, 'group')) {
+                $result[$key] = $this->executeValidation($value, 'group', 'group selection');
+            }
+            
         }
         
         return $result;
@@ -123,6 +127,13 @@ class Validate {
     }
     
     public static function field($val) {
+        if (strlen($val) > 100 || strlen($val) < DEFAULT_MIN_LENGTH) {
+            return false;
+        }      
+        return true;
+    }
+    
+    public static function group($val) {
         if (strlen($val) > 100 || strlen($val) < DEFAULT_MIN_LENGTH) {
             return false;
         }      

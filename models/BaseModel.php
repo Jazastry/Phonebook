@@ -108,7 +108,7 @@ abstract class BaseModel {
         return $results;
     }
     
-    public function delete( $id, $tableIn = null ) {
+    public function deleteById( $id, $tableIn = null ) {
         $table = $this->table;
         if ($tableIn != null) {
             $table = $tableIn;
@@ -122,6 +122,30 @@ abstract class BaseModel {
         $statement->execute();        
         
         if ($statement->affected_rows > 0) {
+            return true;
+        }
+        return false;
+    }
+    
+     public function delete($argsIn = array()){
+        $defaults = array(
+            'table' => '',
+            'where' => ''
+        );
+        
+        $args = array_merge($defaults, $argsIn);
+        
+        extract($args);
+        
+        $query = "DELETE FROM {$table}";
+        
+        if (! empty($where)) {
+            $query .= " WHERE $where";
+        }
+        
+        $result_set = $this->db->query($query);
+        
+        if ($result_set) {
             return true;
         }
         return false;

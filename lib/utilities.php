@@ -2,13 +2,35 @@
 
 class Utilities {
     
-    public function extractPairs($args) {        
+    public function addCheckToGroups( $phoneGroups, $groups ) {
+        
         $result = array();
         
-        while (count($args) > 0) {
-            $couple = array_slice($args, 0, 2); 
-            $args = array_slice($args, 2, count($args));
-            array_push($result, $couple);
+        foreach ( $groups as $group ) {
+            $transGroup = $group;
+            
+            foreach ( $phoneGroups as $phoneGroup ) {
+                
+                if ( $group['id'] == $phoneGroup['id'] ) {
+                    $transGroup['checked'] = true;
+                    break;
+                }
+            }
+            
+            array_push( $result, $transGroup );
+        }
+        
+        return $result;
+    }
+    
+    public function extractPairs( $args ) {
+        
+        $result = array();
+        
+        while ( count( $args ) > 0 ) {
+            $couple = array_slice( $args, 0, 2 ); 
+            $args = array_slice( $args, 2, count( $args ) );
+            array_push( $result, $couple );
         }        
         
         return $result;

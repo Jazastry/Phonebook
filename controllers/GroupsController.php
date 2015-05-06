@@ -71,7 +71,7 @@ class GroupsController extends BaseController {
     public function delete( $id ) { 
         $groupId = intval( $id[0] );
         
-        $isDeleted = $this->model->delete( $groupId );
+        $isDeleted = $this->model->deleteById( $groupId );
         
         if ($isDeleted) {
             $this->messages->addInfoMessage( 'Group deleted.' );
@@ -82,5 +82,49 @@ class GroupsController extends BaseController {
         }
         
         $this->renderView();
+    }
+    
+    public function addPhone( $phoneIdIn ) {        
+        $phoneId = '';
+        if ($this->isPost) {
+            $phoneId = htmlspecialchars($_POST['phone_id']);            
+            $paramsValidated = $this->validate->form($_POST);
+            $hasNoErrors = $this->messages->hasNoErrors($paramsValidated);
+            $isCreated = false;
+            
+            if ($hasNoErrors) {                       
+                $isCreated = $this->model->addPhoneToGroups($paramsValidated, $phoneId);
+            }
+            
+            if ($isCreated && $hasNoErrors) {
+                $this->messages->addInfoMessage('Phone added to groups.');
+            }
+            if (! $isCreated || ! $hasNoErrors) {                
+                $this->messages->addErrorMessage('Phone was not added to groups.');
+                $this->messages->extractErrors( $paramsValidated );
+            }
+        }
+        
+        if (! empty($phoneIdIn[0])) {
+            $phoneId = htmlspecialchars( $phoneIdIn[0] );
+        }
+        
+        $utils = new Utilities();
+        
+        $this->phone = $this->model->getPhone( intval($phoneId) );
+        $userId = $this->user['id'];        
+        
+        $this->groups = $this->model->getAllGroups( $userId );
+        $this->phoneGroups = $this->model->getPhoneGroups( $this->phone['id'] );
+        $groups = $utils->addCheckToGroups( $this->phoneGroups, $this->groups );
+        $this->groups = $groups;
+        
+        $this->title = 'Add phone to ' . $this->title;
+        
+        if (empty($this->groups)) {
+            $this->messages->addInfoMessage( 'You don`t have any groups currently.' );
+        }
+        
+        $this->renderView( __FUNCTION__ );
     }
 }

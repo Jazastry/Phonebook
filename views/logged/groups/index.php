@@ -1,3 +1,4 @@
+<h1><?php if(! empty($this->title)) {echo $this->title;} ?></h1>
 <div class='mainList'>
     <ul>
     <?php foreach ($this->groups as $group) : ?>        
@@ -11,5 +12,7 @@
     </ul>
 </div>
 <div class="panel">
-    <a href="/logged/groups/create"><button type="button">Add group</button></a>    
+    <div>
+        <a href="/logged/groups/create"><button type="button">Add group</button></a>
+    </div>
 </div>

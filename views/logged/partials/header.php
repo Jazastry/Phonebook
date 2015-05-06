@@ -20,8 +20,7 @@
             <ul>
                 <li><a href="/logged/home">HOME</a></li>
                 <li><a href="/logged/phones">PHONES</a></li>
-                <li><a href="/logged/groups">GROUPS</a></li>
-                <li><a href="/logged/phones/create">ADD PHONE</a></li>          
+                <li><a href="/logged/groups">GROUPS</a></li>         
                 <li><a href="/account/logout">LOGOUT</a></li>
             </ul>
         </header>

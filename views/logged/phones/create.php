@@ -1,3 +1,4 @@
+<h1><?php if(! empty($this->title)) {echo $this->title;} ?></h1>
 <form id="phonesCreateForm" method="POST">
     <h3>Create new record</h3>    
     <label for="name">Name</label>
@@ -9,13 +10,13 @@
     <label for="address">Address</label>
     <input type="text" name="address"/>
     <div>
-        <button type="submit">Submit</button>
-        <a href="/phones"><button type="button">Cancel</button></a>
+        <button id="addCustom" type="button">Add custom field</button>
+        <button id="removeCustom" type="button">Remove custom field</button>
     </div> 
 </form>
 <div class="panel">
     <div>
-        <button id="addCustom" type="button">Add custom field</button>
-        <button id="removeCustom" type="button">Remove custom field</button>
+        <button type="submit" form="phonesCreateForm">Submit</button>
+        <a href="/logged/phones"><button type="button">Cancel</button></a>
     </div>
 </div>

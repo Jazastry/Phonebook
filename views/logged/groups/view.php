@@ -1,3 +1,4 @@
+<h1><?php if(! empty($this->title)) {echo $this->title;} ?></h1>
 <div class='mainList'>
     <h3>Group: <?php echo $this->group['name']; ?></h3>
     <ul>

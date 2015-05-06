@@ -1,3 +1,4 @@
+<h1><?php if(! empty($this->title)) {echo $this->title;} ?></h1>
 <form  method="POST">
     <h3>Create new group</h3>    
     <label for="name">Name</label>

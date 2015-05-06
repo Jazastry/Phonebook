@@ -56,6 +56,8 @@ class PhonesController extends BaseController {
         $phoneId = $id[0];
         $this->phone = $this->model->get($phoneId);
         $this->costumFields = $this->model->customFields( $phoneId );
+        $this->groups = $this->model->getPhoneGroups( $phoneId );
+        $this->currentActionBar = 'views/logged/partials/phonesActionBar.php';
         
         $this->renderView(__FUNCTION__);
     }
@@ -69,7 +71,7 @@ class PhonesController extends BaseController {
         
         $phone = $this->model->get($phoneId);
         
-        $isDeleted = $this->model->delete( $phoneId );
+        $isDeleted = $this->model->deleteById( $phoneId );
         
         if ($isDeleted) {
             $this->messages->addInfoMessage('Phone ' . $phone['name'] . ' deleted.');

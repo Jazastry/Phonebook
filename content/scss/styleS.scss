@@ -16,12 +16,20 @@ $light-green: #00f669;
 $light-red: #ff3325;
 $dark-yellow: #ffcc00;
 $input-height: 25px;
+$list-font-size: 30px;
+$text-size-s: 15px;
 
-
+.italic {
+    font-style: italic;
+}
+.text-s {
+    font-size: $text-size-s;
+}
 html {
     width: 100%;
     height: 100%;
     background-color: #333333;
+    font-family: Consolas;
     body {
         margin-left: auto;
         margin-right: auto;
@@ -142,6 +150,7 @@ html {
                 outline: 2px solid red;
                 margin-left: $pading-m-horizont;
                 height: 100%;
+                 overflow: auto;
             }
             .main-display {
                 display: inline-block;
@@ -152,13 +161,10 @@ html {
                 overflow: hidden;
                 form {
                     outline: 1px solid #000;
-                    margin-left: $pading-s-horizont;
-                    margin-right: $pading-s-horizont;
-                    margin-top: $pading-s-horizont;
                     padding: $pading-s-horizont;
                     outline: 2px solid greenyellow;
                     overflow: auto;
-                    height: 78%;
+                    height: 77%;
                     label, input {
                         display: block;
                         height: $input-height;
@@ -180,6 +186,7 @@ html {
                         width: 40%;
                         display: inline-block;
                         margin-top: $pading-s-horizont;
+                        margin-bottom: $pading-s-horizont;
                         margin-left: $pading-s-horizont;
                     }
                     a {
@@ -220,18 +227,19 @@ html {
                 }
                 .mainList {                    
                     border: 2px solid yellow;
-                    height: 90%;
+                    height: 84%;
                     width: 100%;
+                    overflow: auto;
                     ul {
                         padding-left: $pading-s-horizont;
                         list-style-type: none;
                         outline: 2px solid green;
-                        width: 100%;
+                        width: 90%;
                         a {
                             display: inline-block;
                             width: 85%;
                             text-decoration: none;
-                            font-size: 30px;
+                            font-size: $list-font-size;
                             color: #000;
                             background-color: $dark-yellow;
                             outline: 2px solid red;
@@ -244,11 +252,47 @@ html {
                             outline: 2px solid blue;
                         }
                         li {
-                            width: 93%;
+                            width: 98%;
                             background-color: $dark-yellow;
                             outline: 1px solid #000;
                             margin-top: $pading-s-horizont;
+                            font-size: $list-font-size;
                         }
+                    }
+                }
+                .checkForm {
+                    outline: 2px solid greenyellow;
+                    overflow: auto;
+                    margin: 0px;
+                    padding: 0px;
+                    width: 100%;
+                    height: 80%;
+                    ul {
+                        list-style: none;
+                        margin: 0px;
+                        width: 100%;
+                        outline: 2px solid yellowgreen;
+                        padding: 0px;
+                        li {
+                            outline: 2px solid blue;
+                            display: inline-block;
+                            width: 94%;
+                            height: $input-height;
+                            margin: 0px;
+                            margin-top: $pading-s-horizont;
+                            margin-left: $pading-s-horizont;
+                            span {
+                                outline: 2px solid red;
+                                font-size: $list-font-size;
+                                width: 91%;
+                                display: inline-block;
+                            }
+                            input {
+                                outline: 1px solid red;
+                                display: inline-block;
+                                width: 6%;
+                            }
+                        }                        
                     }
                 }
             }    

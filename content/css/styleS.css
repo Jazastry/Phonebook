@@ -4,10 +4,17 @@ ul, img, li {
   padding: 0px;
   margin: 0px; }
 
+.italic {
+  font-style: italic; }
+
+.text-s {
+  font-size: 15px; }
+
 html {
   width: 100%;
   height: 100%;
-  background-color: #333333; }
+  background-color: #333333;
+  font-family: Consolas; }
   html body {
     margin-left: auto;
     margin-right: auto;
@@ -106,7 +113,8 @@ html {
         width: 25%;
         outline: 2px solid red;
         margin-left: 40px;
-        height: 100%; }
+        height: 100%;
+        overflow: auto; }
       html body .main-section .main-display {
         display: inline-block;
         width: 60%;
@@ -116,13 +124,10 @@ html {
         overflow: hidden; }
         html body .main-section .main-display form {
           outline: 1px solid #000;
-          margin-left: 20px;
-          margin-right: 20px;
-          margin-top: 20px;
           padding: 20px;
           outline: 2px solid greenyellow;
           overflow: auto;
-          height: 78%; }
+          height: 77%; }
           html body .main-section .main-display form label, html body .main-section .main-display form input {
             display: block;
             height: 25px;
@@ -141,6 +146,7 @@ html {
             width: 40%;
             display: inline-block;
             margin-top: 20px;
+            margin-bottom: 20px;
             margin-left: 20px; }
           html body .main-section .main-display form a {
             text-decoration: none;
@@ -172,13 +178,14 @@ html {
               width: 40%; }
         html body .main-section .main-display .mainList {
           border: 2px solid yellow;
-          height: 90%;
-          width: 100%; }
+          height: 84%;
+          width: 100%;
+          overflow: auto; }
           html body .main-section .main-display .mainList ul {
             padding-left: 20px;
             list-style-type: none;
             outline: 2px solid green;
-            width: 100%; }
+            width: 90%; }
             html body .main-section .main-display .mainList ul a {
               display: inline-block;
               width: 85%;
@@ -194,10 +201,41 @@ html {
               font-size: 20px;
               outline: 2px solid blue; }
             html body .main-section .main-display .mainList ul li {
-              width: 93%;
+              width: 98%;
               background-color: #ffcc00;
               outline: 1px solid #000;
-              margin-top: 20px; }
+              margin-top: 20px;
+              font-size: 30px; }
+        html body .main-section .main-display .checkForm {
+          outline: 2px solid greenyellow;
+          overflow: auto;
+          margin: 0px;
+          padding: 0px;
+          width: 100%;
+          height: 80%; }
+          html body .main-section .main-display .checkForm ul {
+            list-style: none;
+            margin: 0px;
+            width: 100%;
+            outline: 2px solid yellowgreen;
+            padding: 0px; }
+            html body .main-section .main-display .checkForm ul li {
+              outline: 2px solid blue;
+              display: inline-block;
+              width: 94%;
+              height: 25px;
+              margin: 0px;
+              margin-top: 20px;
+              margin-left: 20px; }
+              html body .main-section .main-display .checkForm ul li span {
+                outline: 2px solid red;
+                font-size: 30px;
+                width: 91%;
+                display: inline-block; }
+              html body .main-section .main-display .checkForm ul li input {
+                outline: 1px solid red;
+                display: inline-block;
+                width: 6%; }
     html body footer {
       text-align: center; }
 

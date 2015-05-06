@@ -1,7 +1,7 @@
 <?php include_once DX_ROOT_DIR . '/views/logged/partials/header.php'; ?>
 <section class="main-section">
     <section class="action-bar">
-        <?php if (! empty( $current_actionBar )) { include_once $current_actionBar; } ?>
+        <?php if (! empty( $this->currentActionBar )) { include_once $this->currentActionBar; } ?>
     </section>
     <section class="main-display">
         <?php include_once $current_template; ?>

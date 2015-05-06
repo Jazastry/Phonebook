@@ -15,26 +15,29 @@ class PhonesModel extends BaseModel {
         return $results;
     }
     
-    public function addNew($element) {        
+    public function addNew( $element ) {        
         $utils = new Utilities();
         
-        $customFields = $utils->extractCustomFields($element);        
-        $paramsCleaned = $utils->fieldsRemove($element);
-        $phoneInsertResult = $this->add($paramsCleaned);
+        $customFields = $utils->extractCustomFields( $element );        
+        $paramsCleaned = $utils->fieldsRemove( $element );
+        $phoneInsertResult = $this->add( $paramsCleaned );
         
         $result = $phoneInsertResult;
         
-        if ($phoneInsertResult['success'] && count($customFields) > 0) {
-            try {
-                $pairs =  $utils->extractPairs($customFields);
-                $fieldsReady = $utils->fieldsKeysCleanup($pairs);
-            } catch (Exception $ex) {
-                throw new Exception('fields');
-            }
+        if ($phoneInsertResult['success'] && count( $customFields ) > 0) {
+
+            $pairs =  $utils->extractPairs( $customFields );
+            $fieldsReady = $utils->fieldsKeysCleanup( $pairs );
             
-            foreach ($fieldsReady as $fieldPair) {
+            foreach ( $fieldsReady as $fieldPair ) {
+                
                 $fieldPair['phone_id'] = $phoneInsertResult['entryId'];
-                $fieldsInsertResult = $this->add($fieldPair, 'custom_fields');
+                $fieldsInsertResult = $this->add( $fieldPair, 'custom_fields' );
+                
+                if ( $fieldsInsertResult['success'] != true ) {
+                    $result['success'] = false;
+                    break;
+                }
             }
         }
         
@@ -48,5 +51,17 @@ class PhonesModel extends BaseModel {
                 'where' => 'phone_id = '. $phoneId
             )
         );      
+    }
+    
+    public function getPhoneGroups ( $phoneId ) {
+        $args = array(
+            'columns' => 'g.name',
+            'table' => 'phones_groups pg '
+                    . 'JOIN groups g '
+                    . 'ON g.id = pg.group_id',
+            'where' => 'pg.phone_id = ' . $phoneId
+        );
+        
+        return $this->find( $args );
     }
 }
