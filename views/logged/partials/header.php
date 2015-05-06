@@ -14,15 +14,14 @@
         <?php include_once 'messages.php'; ?>
         <header>
             <h1>Phone Book</h1>
+            <div class="rightSide">
+                <li><h4><?php echo 'Hello ' . $this->user['username'] . '!'?></h4></li>                    
+            </div>
             <ul>
                 <li><a href="/logged/home">HOME</a></li>
                 <li><a href="/logged/phones">PHONES</a></li>
                 <li><a href="/logged/groups">GROUPS</a></li>
-                <li><a href="/logged/phones/create">ADD NEW PHONE</a></li>
-                <div class="rightSide">
-                    <li><h4><?php echo 'Hello ' . $this->user['username'] . '!'?></h4></li>
-                    <li><a href="/account/logout">LOGOUT</a></li>
-                </div>
+                <li><a href="/logged/phones/create">ADD PHONE</a></li>          
+                <li><a href="/account/logout">LOGOUT</a></li>
             </ul>
         </header>
-        <style><?php include './phonebook/content/css/styleS.css'; ?></style>

@@ -107,4 +107,23 @@ abstract class BaseModel {
         
         return $results;
     }
+    
+    public function delete( $id, $tableIn = null ) {
+        $table = $this->table;
+        if ($tableIn != null) {
+            $table = $tableIn;
+        }       
+        
+        $query = "DELETE FROM " . $table . " WHERE id = ?";
+        
+        $statement = $this->db->prepare($query);
+        $err = $this->db->error;
+        $statement->bind_param("i", $id);        
+        $statement->execute();        
+        
+        if ($statement->affected_rows > 0) {
+            return true;
+        }
+        return false;
+    }
 }

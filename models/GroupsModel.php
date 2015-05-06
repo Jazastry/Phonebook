@@ -15,11 +15,12 @@ class GroupsModel extends BaseModel {
         return $results;
     }
     
-    //SELECT p.id, p.name
-    //FROM phones_groups pg 
-    //JOIN phones p
-    //ON pg.phone_id = p.id
-    //WHERE pg.group_id = 5;
+    public function addNew( $args ) {
+        
+        $result = $this->add( $args );
+        
+        return $result['success'];        
+    }
     
     public function getPhonesByGroupId( $groupId ) {
         $args = array(

@@ -26,20 +26,26 @@ class PhonesController extends BaseController {
         $this->renderView();
     }
     
-    public function create() { // field_name, field_value
+    public function create() { 
         if ($this->isPost) {
-          
-            $params = $this->validate->form($_POST);         
+                        
+            $paramsValidated = $this->validate->form($_POST);
+            $hasNoErrors = $this->messages->hasNoErrors($paramsValidated);
+            $isCreated = false;
             
-            $params['user_id'] = $this->user['id'];            
-            $isCreated = $this->model->addNew($params);
+            if ($hasNoErrors) {
+                $paramsValidated['user_id'] = $this->user['id'];       
+                $isCreated = $this->model->addNew($paramsValidated);
+            }
             
-            if ($isCreated) {
-                $this->addInfoMessage('Reccord created.');
+            
+            if ($isCreated && $hasNoErrors) {
+                $this->messages->addInfoMessage('Reccord created.');
                 $this->redirect();
             }
-            if (! $isCreated) {
-                $this->addErrorMessage('Reccord was not created.');
+            if (! $isCreated || ! $hasNoErrors) {                
+                $this->messages->addErrorMessage('Reccord was not created.');
+                $this->messages->extractErrors( $paramsValidated );
             }
         }
 
@@ -56,5 +62,23 @@ class PhonesController extends BaseController {
     
     public function update( $id ) {
         echo ' In Update';
+    }
+    
+    public function delete( $id ) { 
+        $phoneId = intval( $id[0] );
+        
+        $phone = $this->model->get($phoneId);
+        
+        $isDeleted = $this->model->delete( $phoneId );
+        
+        if ($isDeleted) {
+            $this->messages->addInfoMessage('Phone ' . $phone['name'] . ' deleted.');
+            $this->redirect();
+        }
+        if (! $isDeleted) {
+            $this->addErrorMessage('Phone was not deleted.');
+        }
+        
+        $this->renderView();
     }
 }

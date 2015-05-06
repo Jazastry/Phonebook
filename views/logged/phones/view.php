@@ -1,4 +1,4 @@
-<div class='phones'>
+<div class='mainList'>
     <ul>
         <li><span>Name:</span> <?php echo htmlspecialchars($this->phone['name']); ?></li>
         <li><span>Number:</span> <?php echo htmlspecialchars($this->phone['number']); ?></li>

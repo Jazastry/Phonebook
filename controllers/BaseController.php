@@ -16,6 +16,7 @@ class BaseController {
             $this->isPost = true;
         }        
         $this->validate = new Validate();
+        $this->messages = new Messages();
         $auth = Auth::get_instance();
         $this->user = $auth->get_logged_user();
         if (! empty( $this->user )) {
@@ -52,20 +53,37 @@ class BaseController {
         $this->redirectToUrl($url);
     }
     
-    function addMessage($msg, $type) {
-        if (!isset($_SESSION['messages'])) {
-            $_SESSION['messages'] = array();
-        }
-        array_push($_SESSION['messages'],
-            array('text' => $msg, 'type' => $type));
-    }
-
-    function addInfoMessage($msg) {
-        $this->addMessage($msg, 'info');
-    }
-
-    function addErrorMessage($msg) {
-        $this->addMessage($msg, 'error');
-    }
+//    function addMessage($msg, $type) {
+//        if (!isset($_SESSION['messages'])) {
+//            $_SESSION['messages'] = array();
+//        }
+//        array_push($_SESSION['messages'],
+//            array('text' => $msg, 'type' => $type));
+//    }
+//
+//    function addInfoMessage($msg) {
+//        $this->addMessage($msg, 'info');
+//    }
+//
+//    function addErrorMessage($msg) {
+//        $this->addMessage($msg, 'error');
+//    }
+//    
+//    function hasErrors( $args ) {
+//        foreach ($args as $key => $value) {
+//            if (is_array($value)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+//    
+//    function displayFormErrors( $args ) {
+//        foreach ($args as $key => $value) {
+//            if (is_array($value)) {
+//                
+//            }
+//        }
+//    }
 }
 

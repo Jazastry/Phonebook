@@ -10,26 +10,29 @@ class AccountController extends BaseController {
     }
     public function register() {
         $this->title = 'Register';
-        if ($this->isPost) {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            $isRegistred = false;
+        if ( $this->isPost ) {
             
-            $auth = Auth::get_instance();       
-            if (! $auth->userExists($username)) {            
-                $user = array(
-                    'username' => $username,
-                    'password' => $password
-                );                
-                $this->validate->form($user);
-                $isRegistred = $this->model->add($user);
+            $username = $_POST['username'];
+            $isRegistred = false;            
+            $auth = Auth::get_instance();   
+            
+            if (! $auth->userExists( $username )) {                
+                
+                $paramsValidated = $this->validate->form( $_POST );
+                $hasNoErrors = $this->messages->hasNoErrors($paramsValidated);
+                $isRegistred = false;
+                
+                if ($hasNoErrors) {
+                    $isRegistred = $this->model->add( $paramsValidated );
+                }                
             }            
             
-            if ($isRegistred) {
-                $this->addInfoMessage('Successfull register. Now login.');
-                $this->redirect('account', 'login');                
+            if ($isRegistred && $hasNoErrors) {
+                $this->messages->addInfoMessage( 'Successfull register. Now login.' );
+                $this->redirect( 'account', 'login' );                
             } else {
-                $this->addErrorMessage('Register failed.');
+                $this->messages->addErrorMessage( 'Register failed.' );
+                $this->messages->extractErrors( $paramsValidated );
             } 
         }        
 
@@ -46,10 +49,10 @@ class AccountController extends BaseController {
             $isLogged = $auth->login($username, $password);
             
             if ($isLogged) {
-                $this->addInfoMessage('Successfull login.');
+                $this->messages->addInfoMessage('Successfull login.');
                 $this->redirect('logged/phones');
             } else {
-                $this->addErrorMessage('Login failed. If you don`t have account please register first.');
+                $this->messages->addErrorMessage('Login failed. If you don`t have account, please register first.');
                 $this->redirect('account', 'register');
             } 
         }  
@@ -67,7 +70,7 @@ class AccountController extends BaseController {
                 $params["secure"], $params["httponly"]
             );
         }
-        $this->addInfoMessage('Log out successfull.');
+        $this->messages->addInfoMessage('Log out successfull.');
         $this->redirect('home');
     }
 }

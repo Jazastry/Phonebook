@@ -34,11 +34,7 @@ if (count($requestParts) >= 3 && !empty($requestParts[3])) {
     $params = array_splice($requestParts, 3);
 }
 
-//$loggedNamespace = $loggedRouting ? '\Logged\\' : '';
 $controllerClassName =  ucfirst ($controller) . 'Controller';
-
-//$loggedFolder = $loggedRouting ? 'controllers/logged/' : '';
-//$controllerFile = $loggedFolder . ucfirst ($controller) . 'Controller.php';
 
 if (class_exists($controllerClassName)) {
     $controllerInstance = new $controllerClassName($controller);

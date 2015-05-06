@@ -14,6 +14,8 @@
     </div> 
 </form>
 <div class="panel">
-    <button id="addCustom" type="button">Add custom field</button>
-    <button id="removeCustom" type="button">Remove custom field</button>
+    <div>
+        <button id="addCustom" type="button">Add custom field</button>
+        <button id="removeCustom" type="button">Remove custom field</button>
+    </div>
 </div>

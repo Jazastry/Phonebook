@@ -27,7 +27,7 @@ class Validate {
             }
             
             if ( $key == 'name' ) {
-                $result[$key] = $this->executeValidation($value, $key, 'Address');              
+                $result[$key] = $this->executeValidation($value, $key, 'Name');              
             }
             
             if ( $key == 'password' ) {
@@ -41,7 +41,7 @@ class Validate {
             }
             
             if ($utils->startsWith($key, 'field')) {
-                $result[$key] = $this->executeValidation($value, 'field', 'Password');
+                $result[$key] = $this->executeValidation($value, 'field', 'custom field');
             }
             
         }
@@ -57,58 +57,75 @@ class Validate {
         return $result;
     }
     
+    public function dataInputValidate( $params ) {
+        $result = array();
+        foreach ($params as $key => $value) {
+            $result[$key] = htmlspecialchars($value);
+        }        
+        return $result;
+    }
+    
     private function executeValidation($valIn, $func, $message) {
         $isValid = self::{$func}($valIn);
         if($isValid) {
             return htmlspecialchars($valIn);
         } else {
-            die("Invalid {$message}.");
+            return array('errorMessage' => "Invalid {$message}.");
         }
     }
     
     public static function email($val) {
-        return filter_var($val, FILTER_VALIDATE_EMAIL) !== false;
+        if (! empty($val)) {
+            return filter_var($val, FILTER_VALIDATE_EMAIL) !== false;
+        }
+        return true;
     }
     
     public static function number($val) {
-        if (strlen($val) < 3) {
-            return false;
+        if (! empty($val)) {
+            if (strlen($val) < 3) {
+                return false;
+            }
+            return (bool)preg_match("/^([+\-]?[0-9]*[\- ]*([(]{1}[0-9]*[)]{1})*[\- ]?([0-9]+[\- ]?[0-9]+)*)$/", $val);
         }
-        return (bool)preg_match("/^([+\-]?[0-9]*[\- ]*([(]{1}[0-9]*[)]{1})*[\- ]?([0-9]+[\- ]?[0-9]+)*)$/", $val);
+        
+        return true;
     }
     
     public static function name($val) {
-        if (strlen($val) < 1) {
+        if (strlen($val) < DEFAULT_MIN_LENGTH) {
             return false;
         }
         return true;
     }
     
     public static function username($val) {
-        if (strlen($val) < 1) {
+        if (strlen($val) < DEFAULT_MIN_LENGTH) {
             return false;
         }
         return true;
     }
     
     public static function address($val) {
-        if (strlen($val) > 100 || strlen($val) < 1) {
-            return false;
+        if (! empty($val)) {
+            if (strlen($val) > 100 || strlen($val) < DEFAULT_MIN_LENGTH) {
+                return false;
+            }
         }
         return true;
     }
     
     public static function password($val) {
-        if (strlen($val) > 50 || strlen($val) < 1) {
+        if (strlen($val) > 50 || strlen($val) < DEFAULT_MIN_LENGTH) {
             return false;
         }
         return (bool)preg_match('/^(([a-zA-Z0-9]+[.\-_*]*)*[a-zA-Z0-9]*)+$/', $val);
     }
     
     public static function field($val) {
-        if (strlen($val) > 100 || strlen($val) < 1) {
+        if (strlen($val) > 100 || strlen($val) < DEFAULT_MIN_LENGTH) {
             return false;
-        }
+        }      
         return true;
     }
 
