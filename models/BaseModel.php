@@ -79,6 +79,29 @@ abstract class BaseModel {
         return $result['success'] = false;
     }
     
+    public function update( $element , $table) {
+        
+        $query = "UPDATE {$table} SET ";        
+        foreach ( $element as $key => $value ) {
+            if ( $key === 'id') {
+                continue;
+            }            
+            $query .= "$key = '" . $this->db->real_escape_string($value) . "',";
+        }
+        
+        $query = rtrim($query, ',');
+        
+        $query .= " WHERE id = {$element['id']}";
+        
+        $result = $this->db->query( $query );
+        $err = $this->db->error;
+        
+        if ($result) {
+            return true;
+        }
+        return false;
+    }
+    
     public function find($argsIn = array()){
         $defaults = array(
             'table' => $this->table,

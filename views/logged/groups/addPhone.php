@@ -31,6 +31,8 @@
 </form>
 <div class="panel">
     <div>
-        <button type="submit" form="addPhoneToGroups">Add phone to selected groups</button>
+        <button type="submit" form="addPhoneToGroups">Update</button>
+        <a href="/logged/phones/view/<?php if(! empty($this->phone['id'])) { echo $this->phone['id'];} ?>">
+            <button type="button">Back</button></a>
     </div>
 </div>

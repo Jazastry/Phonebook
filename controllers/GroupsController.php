@@ -22,6 +22,7 @@ class GroupsController extends BaseController {
         $userId = $this->user['id'];
         $groups = $this->model->getAllGroups( $userId ); 
         $this->groups = $groups;
+        $this->currentActionBar = 'views/logged/partials/groups/indexActionBar.php';
         
         if ( count( $groups ) == 0 ) {
             $this->messages->addInfoMessage( 
@@ -37,6 +38,12 @@ class GroupsController extends BaseController {
         $groupId = $id[0];
         $this->group = $this->model->get( $groupId );
         $this->phones = $this->model->getPhonesByGroupId( $groupId );
+        $this->currentActionBar = 'views/logged/partials/groups/viewActionBar.php';
+        
+        if ( empty( $this->phones ) ) {
+            $this->messages->addInfoMessage('You don`t have any phones in this group.'
+                    . ' Go to Manage groups if you want to add one.');
+        }        
         
         $this->renderView( __FUNCTION__ );
     }
@@ -65,6 +72,7 @@ class GroupsController extends BaseController {
             }
         }
 
+        $this->currentActionBar = 'views/logged/partials/groups/createActionBar.php';
         $this->renderView( __FUNCTION__ );
     }
     
@@ -97,10 +105,10 @@ class GroupsController extends BaseController {
             }
             
             if ($isCreated && $hasNoErrors) {
-                $this->messages->addInfoMessage('Phone added to groups.');
+                $this->messages->addInfoMessage('Phone groups updated.');
             }
-            if (! $isCreated || ! $hasNoErrors) {                
-                $this->messages->addErrorMessage('Phone was not added to groups.');
+            if (! $hasNoErrors) {                
+                $this->messages->addErrorMessage('Phone groups was not updated.');
                 $this->messages->extractErrors( $paramsValidated );
             }
         }
@@ -125,6 +133,7 @@ class GroupsController extends BaseController {
             $this->messages->addInfoMessage( 'You don`t have any groups currently.' );
         }
         
+        $this->currentActionBar = 'views/logged/partials/groups/addPhoneActionBar.php';
         $this->renderView( __FUNCTION__ );
     }
 }

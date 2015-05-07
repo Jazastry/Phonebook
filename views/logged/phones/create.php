@@ -16,7 +16,7 @@
 </form>
 <div class="panel">
     <div>
-        <button type="submit" form="phonesCreateForm">Submit</button>
+        <button type="submit" form="phonesCreateForm">Create</button>
         <a href="/logged/phones"><button type="button">Cancel</button></a>
     </div>
 </div>

@@ -44,6 +44,37 @@ class PhonesModel extends BaseModel {
         return $result['success'];
     }
     
+    public function updateRecord( $element ) {
+        $utils = new Utilities();
+        
+        $customFields = $utils->extractCustomFields( $element );        
+        $phoneData = $utils->fieldsRemove( $element );
+        $isPhoneUpdated = $this->update( $phoneData , 'phones');
+        
+        $result = $isPhoneUpdated;
+        
+        if ($isPhoneUpdated && count( $customFields ) > 0) {
+            
+            $this->clearFields($phoneData['id']);
+            
+            $pairs =  $utils->extractPairs( $customFields );
+            $fieldsReady = $utils->fieldsKeysCleanup( $pairs );
+            
+            foreach ( $fieldsReady as $fieldPair ) {
+                
+                $fieldPair['phone_id'] = $phoneData['id'];
+                $fieldsInsertResult = $this->add( $fieldPair, 'custom_fields' );
+                
+                if ( $fieldsInsertResult['success'] != true ) {
+                    $result = false;
+                    break;
+                }
+            }
+        }
+        
+        return $result;
+    }
+    
     public function customFields( $phoneId ) {
         return $this->find(
             array(
@@ -63,5 +94,16 @@ class PhonesModel extends BaseModel {
         );
         
         return $this->find( $args );
+    }
+    
+    public function clearFields ( $phoneId ) {
+        $args = array(
+            'table' => 'custom_fields',
+            'where' => 'phone_id = ' . $phoneId 
+        );
+        
+        $result = $this->delete( $args );
+        
+        return $result;
     }
 }

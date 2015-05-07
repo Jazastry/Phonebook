@@ -4,11 +4,16 @@
     <ul>
     <?php foreach ($this->phones as $phone) : ?>
         <li>
+            <a href="/logged/phones/view/<?php echo htmlspecialchars($phone['id']); ?>">
             <?php echo htmlspecialchars($phone['name']); ?>
-            <a class="delBtn" href="/logged/phones/delete/<?php echo htmlspecialchars($phone['id']); ?>">
-                DELETE
             </a>
         </li> 
     <?php endforeach;?>
     </ul>
+</div>
+<div class="panel">
+    <div>
+        <a href="/logged/groups"><button type="submit" form="phonesCreateForm">Groups</button></a>
+        <a href="/logged/phones"><button type="button">Phones</button></a>
+    </div>
 </div>

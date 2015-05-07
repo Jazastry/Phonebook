@@ -11,16 +11,20 @@ $pading-l-horizont: 150px;
 $pading-ll-horizont: 200px;
 $pading-xl-horizont: 300px;
 $padding-main-vert: 10px;
-$light-brown: #cca410;
+$light-brown: #000;
 $light-green: #00f669;
 $light-red: #ff3325;
-$dark-yellow: #ffcc00;
+$dark-grey: #333333;
+$light-grey: #cccccc;
+$black: #000;
+$white: #fff;
 $input-height: 25px;
 $list-font-size: 30px;
 $text-size-s: 15px;
 
 .italic {
     font-style: italic;
+    color: #cccccc;
 }
 .text-s {
     font-size: $text-size-s;
@@ -28,27 +32,28 @@ $text-size-s: 15px;
 html {
     width: 100%;
     height: 100%;
-    background-color: #333333;
+    background-color: $dark-grey;
     font-family: Consolas;
     body {
         margin-left: auto;
         margin-right: auto;
         width: 1000px;
         background-color: #999999;
-        height: 100%;
-        outline: 2px solid red;
+        height: 690px;
+        /*outline: 2px solid red;*/
         .messages {
             position: absolute;
-            width: 25%;
-            left: 70%;
+            width: 300px;
+            left: 62%;
             text-align: center;
             top: 4%;
-            outline: 2px solid green;
+            /*outline: 2px solid green;*/
+            z-index: 100;
+            /*outline: 2px solid green;*/
             ul {
                 list-style: none;
             }            
             li {
-                outline: 1px solid #000;
                 border-radius: 5px;
                 padding-top: 5px;
                 padding-bottom: 5px;
@@ -104,82 +109,102 @@ html {
             padding-top: $padding-main-vert;
             padding-bottom: $padding-main-vert;
             height: 90px;
-            outline: 2px solid green;
+            position: relative;
+            color: $light-grey;
             img {
                 height: 100px;
             }
             ul, li, img {
                 display: inline-block;
                 vertical-align: middle;
-                outline: 2px solid blue;
             }
             li {
                 padding-left: $pading-s-horizont;
                 padding-right: $pading-s-horizont;
                 border-left: 1px solid #000;
                 border-right: 1px solid #000;
+                color: $white;
             }
             ul {
                 position: relative;
                 width: 100%;
                 top: 30%;
-                /*border: 1px solid red;*/
+                color: $white;
             }
             a {
                 color: #000;
                 text-decoration: none;
-                outline: 2px solid blue;
+                color: $white;
             }
             .rightSide {
                 position: absolute;
-                right: $pading-ll-horizont;
+                right: $pading-m-horizont;
                 top: $pading-ss-horizont;
                 vertical-align: middle;
-                outline: 2px solid blue;
+                color: $white;
             }
         }
         .main-section {
-            border: 2px solid yellow;
             height: 77%;
+            padding-top: 3px;
             #welcome {
                 margin-top: $pading-s-horizont;
             }
             .action-bar {
                 display: inline-block;
                 width: 25%;
-                outline: 2px solid red;
+                /*outline: 2px solid red;*/
                 margin-left: $pading-m-horizont;
                 height: 100%;
-                 overflow: auto;
+                overflow: auto;
+                div {
+                    display: flex;       
+                    flex-direction: column;
+                    height: 100%;
+                    /*outline: 2px solid red;*/
+                    a {
+                        padding-top: $pading-s-horizont;
+                        /*outline: 2px solid green;*/
+                        width: 100%;
+                        button {
+                            /*outline: 2px solid blue;*/
+                            height: $list-font-size;
+                            width: 100%;
+                        }
+                    }
+                }
             }
             .main-display {
                 display: inline-block;
                 width: 60%;
-                outline: 2px solid red;
+                /*outline: 2px solid red;*/
                 margin-left: $pading-m-horizont;
                 height: 100%;
                 overflow: hidden;
                 form {
-                    outline: 1px solid #000;
+                    /*outline: 1px solid #000;*/
                     padding: $pading-s-horizont;
-                    outline: 2px solid greenyellow;
+                    /*outline: 2px solid greenyellow;*/
                     overflow: auto;
                     height: 77%;
                     label, input {
                         display: block;
                         height: $input-height;
                         margin-top: $pading-ss-horizont;
-                        outline: 2px solid blue;
+                        /*outline: 2px solid blue;*/
                     }
                     input {
-                        width: 100%;
-                        outline: 2px solid blue;
-                        /*margin-top: $pading-ss-horizont;*/
+                        width: 95%;
+                        /*outline: 2px solid blue;*/
+                        background-color: $dark-grey;
+                        color: $white;
+                        border: none;
+                        padding-left: $pading-s-horizont;
                     }
                     div {
                         margin-left: $pading-s-horizont;
                         margin-right: $pading-s-horizont;
-                        outline: 2px solid blue;
+                        /*outline: 2px solid blue;*/
                     }
                     button {
                         height: $input-height;
@@ -191,28 +216,28 @@ html {
                     }
                     a {
                         text-decoration: none;
-                        outline: 2px solid greenyellow;
+                        /*outline: 2px solid greenyellow;*/
                     }
                     h3 {
                         margin-bottom: $pading-s-horizont;
-                        outline: 2px solid blue;
+                        /*outline: 2px solid blue;*/
                     }
                     .customField {
                         margin-left: 0px;
                         margin-right: 0px;
-                        outline: 2px solid red;
+                        /*outline: 2px solid red;*/
                         div {
                             display: inline-block;
                             width: 47%;
                             margin-left: $pading-ss-horizont;
                             margin-right: $pading-ss-horizont;
-                            outline: 2px solid greenyellow;
+                            /*outline: 2px solid greenyellow;*/
                         }
                     }
                 }
                 .panel {
                     padding: $pading-ss-horizont;
-                    border: 1px solid yellow;
+                    /*border: 1px solid yellow;*/
                     height: 9%;
                     width: 100%;
                     div {
@@ -226,42 +251,47 @@ html {
                     }
                 }
                 .mainList {                    
-                    border: 2px solid yellow;
+                    /*border: 2px solid yellow;*/
                     height: 84%;
                     width: 100%;
                     overflow: auto;
                     ul {
                         padding-left: $pading-s-horizont;
                         list-style-type: none;
-                        outline: 2px solid green;
+                        /*outline: 2px solid green;*/
                         width: 90%;
                         a {
                             display: inline-block;
-                            width: 85%;
+                            width: 83%;
                             text-decoration: none;
                             font-size: $list-font-size;
-                            color: #000;
-                            background-color: $dark-yellow;
-                            outline: 2px solid red;
+                            color: $white;
+                            background-color: $dark-grey;
+                            /*outline: 2px solid red;*/
                         }
                         .delBtn {
                             height: 100%;
                             width: 7%;
-                            background-color: $dark-yellow;
+                            background-color: $dark-grey;
                             font-size: 20px;
-                            outline: 2px solid blue;
+                            /*outline: 2px solid blue;*/
                         }
                         li {
                             width: 98%;
-                            background-color: $dark-yellow;
-                            outline: 1px solid #000;
+                            background-color: $dark-grey;
+                            /*outline: 1px solid #000;*/
                             margin-top: $pading-s-horizont;
                             font-size: $list-font-size;
+                            color: $white;
+                            padding-left: $pading-s-horizont;
+                            border-radius: 5px;
+                            span {
+                                font-size: $text-size-s;
+                            }
                         }
                     }
                 }
                 .checkForm {
-                    outline: 2px solid greenyellow;
                     overflow: auto;
                     margin: 0px;
                     padding: 0px;
@@ -271,26 +301,30 @@ html {
                         list-style: none;
                         margin: 0px;
                         width: 100%;
-                        outline: 2px solid yellowgreen;
+                        /*outline: 2px solid yellowgreen;*/
                         padding: 0px;
                         li {
-                            outline: 2px solid blue;
+                            /*outline: 2px solid blue;*/
                             display: inline-block;
-                            width: 94%;
-                            height: $input-height;
+                            width: 90%;
                             margin: 0px;
                             margin-top: $pading-s-horizont;
                             margin-left: $pading-s-horizont;
+                            background-color: $dark-grey;  
+                            padding-left: $pading-s-horizont;
+                            color: $white;
+                            border-radius: 5px;
                             span {
-                                outline: 2px solid red;
+                                /*outline: 2px solid red;*/
                                 font-size: $list-font-size;
-                                width: 91%;
+                                width: 89%;
                                 display: inline-block;
                             }
                             input {
-                                outline: 1px solid red;
+                                /*outline: 1px solid red;*/
                                 display: inline-block;
                                 width: 6%;
+                                background-color: $dark-grey;
                             }
                         }                        
                     }
@@ -298,6 +332,9 @@ html {
             }    
         }        
         footer {
+            background-color: #000;
+            height: $pading-m-horizont;
+            padding-top: 13px;
             text-align: center;
         } 
     }    

@@ -5,7 +5,8 @@ ul, img, li {
   margin: 0px; }
 
 .italic {
-  font-style: italic; }
+  font-style: italic;
+  color: #cccccc; }
 
 .text-s {
   font-size: 15px; }
@@ -20,19 +21,20 @@ html {
     margin-right: auto;
     width: 1000px;
     background-color: #999999;
-    height: 100%;
-    outline: 2px solid red; }
+    height: 690px;
+    /*outline: 2px solid red;*/ }
     html body .messages {
       position: absolute;
-      width: 25%;
-      left: 70%;
+      width: 300px;
+      left: 62%;
       text-align: center;
       top: 4%;
-      outline: 2px solid green; }
+      /*outline: 2px solid green;*/
+      z-index: 100;
+      /*outline: 2px solid green;*/ }
       html body .messages ul {
         list-style: none; }
       html body .messages li {
-        outline: 1px solid #000;
         border-radius: 5px;
         padding-top: 5px;
         padding-bottom: 5px;
@@ -71,76 +73,93 @@ html {
       html body .messages li.errorMessage {
         background-color: #ff3325; }
     html body header {
-      background-color: #cca410;
+      background-color: #000;
       padding-left: 20px;
       padding-top: 10px;
       padding-bottom: 10px;
       height: 90px;
-      outline: 2px solid green; }
+      position: relative;
+      color: #cccccc; }
       html body header img {
         height: 100px; }
       html body header ul, html body header li, html body header img {
         display: inline-block;
-        vertical-align: middle;
-        outline: 2px solid blue; }
+        vertical-align: middle; }
       html body header li {
         padding-left: 20px;
         padding-right: 20px;
         border-left: 1px solid #000;
-        border-right: 1px solid #000; }
+        border-right: 1px solid #000;
+        color: #fff; }
       html body header ul {
         position: relative;
         width: 100%;
         top: 30%;
-        /*border: 1px solid red;*/ }
+        color: #fff; }
       html body header a {
         color: #000;
         text-decoration: none;
-        outline: 2px solid blue; }
+        color: #fff; }
       html body header .rightSide {
         position: absolute;
-        right: 200px;
+        right: 40px;
         top: 5px;
         vertical-align: middle;
-        outline: 2px solid blue; }
+        color: #fff; }
     html body .main-section {
-      border: 2px solid yellow;
-      height: 77%; }
+      height: 77%;
+      padding-top: 3px; }
       html body .main-section #welcome {
         margin-top: 20px; }
       html body .main-section .action-bar {
         display: inline-block;
         width: 25%;
-        outline: 2px solid red;
+        /*outline: 2px solid red;*/
         margin-left: 40px;
         height: 100%;
         overflow: auto; }
+        html body .main-section .action-bar div {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          /*outline: 2px solid red;*/ }
+          html body .main-section .action-bar div a {
+            padding-top: 20px;
+            /*outline: 2px solid green;*/
+            width: 100%; }
+            html body .main-section .action-bar div a button {
+              /*outline: 2px solid blue;*/
+              height: 30px;
+              width: 100%; }
       html body .main-section .main-display {
         display: inline-block;
         width: 60%;
-        outline: 2px solid red;
+        /*outline: 2px solid red;*/
         margin-left: 40px;
         height: 100%;
         overflow: hidden; }
         html body .main-section .main-display form {
-          outline: 1px solid #000;
+          /*outline: 1px solid #000;*/
           padding: 20px;
-          outline: 2px solid greenyellow;
+          /*outline: 2px solid greenyellow;*/
           overflow: auto;
           height: 77%; }
           html body .main-section .main-display form label, html body .main-section .main-display form input {
             display: block;
             height: 25px;
             margin-top: 5px;
-            outline: 2px solid blue; }
+            /*outline: 2px solid blue;*/ }
           html body .main-section .main-display form input {
-            width: 100%;
-            outline: 2px solid blue;
-            /*margin-top: $pading-ss-horizont;*/ }
+            width: 95%;
+            /*outline: 2px solid blue;*/
+            background-color: #333333;
+            color: #fff;
+            border: none;
+            padding-left: 20px; }
           html body .main-section .main-display form div {
             margin-left: 20px;
             margin-right: 20px;
-            outline: 2px solid blue; }
+            /*outline: 2px solid blue;*/ }
           html body .main-section .main-display form button {
             height: 25px;
             width: 40%;
@@ -150,23 +169,23 @@ html {
             margin-left: 20px; }
           html body .main-section .main-display form a {
             text-decoration: none;
-            outline: 2px solid greenyellow; }
+            /*outline: 2px solid greenyellow;*/ }
           html body .main-section .main-display form h3 {
             margin-bottom: 20px;
-            outline: 2px solid blue; }
+            /*outline: 2px solid blue;*/ }
           html body .main-section .main-display form .customField {
             margin-left: 0px;
             margin-right: 0px;
-            outline: 2px solid red; }
+            /*outline: 2px solid red;*/ }
             html body .main-section .main-display form .customField div {
               display: inline-block;
               width: 47%;
               margin-left: 5px;
               margin-right: 5px;
-              outline: 2px solid greenyellow; }
+              /*outline: 2px solid greenyellow;*/ }
         html body .main-section .main-display .panel {
           padding: 5px;
-          border: 1px solid yellow;
+          /*border: 1px solid yellow;*/
           height: 9%;
           width: 100%; }
           html body .main-section .main-display .panel div {
@@ -177,37 +196,41 @@ html {
               height: 90%;
               width: 40%; }
         html body .main-section .main-display .mainList {
-          border: 2px solid yellow;
+          /*border: 2px solid yellow;*/
           height: 84%;
           width: 100%;
           overflow: auto; }
           html body .main-section .main-display .mainList ul {
             padding-left: 20px;
             list-style-type: none;
-            outline: 2px solid green;
+            /*outline: 2px solid green;*/
             width: 90%; }
             html body .main-section .main-display .mainList ul a {
               display: inline-block;
-              width: 85%;
+              width: 83%;
               text-decoration: none;
               font-size: 30px;
-              color: #000;
-              background-color: #ffcc00;
-              outline: 2px solid red; }
+              color: #fff;
+              background-color: #333333;
+              /*outline: 2px solid red;*/ }
             html body .main-section .main-display .mainList ul .delBtn {
               height: 100%;
               width: 7%;
-              background-color: #ffcc00;
+              background-color: #333333;
               font-size: 20px;
-              outline: 2px solid blue; }
+              /*outline: 2px solid blue;*/ }
             html body .main-section .main-display .mainList ul li {
               width: 98%;
-              background-color: #ffcc00;
-              outline: 1px solid #000;
+              background-color: #333333;
+              /*outline: 1px solid #000;*/
               margin-top: 20px;
-              font-size: 30px; }
+              font-size: 30px;
+              color: #fff;
+              padding-left: 20px;
+              border-radius: 5px; }
+              html body .main-section .main-display .mainList ul li span {
+                font-size: 15px; }
         html body .main-section .main-display .checkForm {
-          outline: 2px solid greenyellow;
           overflow: auto;
           margin: 0px;
           padding: 0px;
@@ -217,26 +240,33 @@ html {
             list-style: none;
             margin: 0px;
             width: 100%;
-            outline: 2px solid yellowgreen;
+            /*outline: 2px solid yellowgreen;*/
             padding: 0px; }
             html body .main-section .main-display .checkForm ul li {
-              outline: 2px solid blue;
+              /*outline: 2px solid blue;*/
               display: inline-block;
-              width: 94%;
-              height: 25px;
+              width: 90%;
               margin: 0px;
               margin-top: 20px;
-              margin-left: 20px; }
+              margin-left: 20px;
+              background-color: #333333;
+              padding-left: 20px;
+              color: #fff;
+              border-radius: 5px; }
               html body .main-section .main-display .checkForm ul li span {
-                outline: 2px solid red;
+                /*outline: 2px solid red;*/
                 font-size: 30px;
-                width: 91%;
+                width: 89%;
                 display: inline-block; }
               html body .main-section .main-display .checkForm ul li input {
-                outline: 1px solid red;
+                /*outline: 1px solid red;*/
                 display: inline-block;
-                width: 6%; }
+                width: 6%;
+                background-color: #333333; }
     html body footer {
+      background-color: #000;
+      height: 40px;
+      padding-top: 13px;
       text-align: center; }
 
 /*# sourceMappingURL=styleS.css.map */

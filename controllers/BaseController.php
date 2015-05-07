@@ -47,8 +47,8 @@ class BaseController {
         $url = '/' . urldecode($controlerName) . '/'
                 . urldecode($actionName);
         if ($params != null) {
-            $encodedParams = array_map($params, 'urlencode');
-            $url .= implode('/', $encodedParams);
+            $encodedParams = urlencode( $params );
+            $url .= '/' . $encodedParams;
         }
         $this->redirectToUrl($url);
     }
