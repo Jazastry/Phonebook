@@ -28,6 +28,6 @@
 <div class="panel">
     <div>
         <a href="/logged/phones/update/<?php echo htmlspecialchars($this->phone['id']); ?>"><button type="button">Update</button></a>
-        <a href="/logged/phones"><button type="button">Cancel</button></a>
+        <a href="/logged/phones"><button type="button">Back</button></a>
     </div>
 </div>

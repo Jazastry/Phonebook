@@ -8,7 +8,8 @@ class GroupsModel extends BaseModel {
     
     public function getAllGroups($userId) {
         $args = array(
-            'where' => 'user_id = ' . $userId
+            'where' => 'user_id = ' . $userId,
+            'order' => 'name'
         );
         $results = $this->find($args);
         
@@ -28,7 +29,8 @@ class GroupsModel extends BaseModel {
             'table' => 'phones_groups pg '
                     . 'JOIN phones p '
                     . 'ON pg.phone_id = p.id',
-            'where' => 'pg.group_id = ' . $groupId
+            'where' => 'pg.group_id = ' . $groupId,
+            'order' => 'p.name'
         );
         
         $phones = $this->find( $args );
@@ -53,7 +55,8 @@ class GroupsModel extends BaseModel {
                     . 'JOIN groups g '
                     . 'ON g.id = pg.group_id',
             'where' => 'pg.phone_id = ' . $phoneId
-                    . ' GROUP BY g.id, g.name' 
+                    . ' GROUP BY g.id, g.name',
+            'order' => 'g.name'
         );
         
         $results = $this->find($args);

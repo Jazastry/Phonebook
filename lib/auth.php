@@ -6,7 +6,7 @@ class Auth {
     
     private function __construct() {
         if(!isset($_SESSION)) {
-            session_set_cookie_params( 5800, "/");
+            session_set_cookie_params( 1800, "/");
             session_start();
         }       
         
@@ -31,17 +31,17 @@ class Auth {
         $db_obj = Database::get_instance();
         $db = $db_obj->get_db();
         $statement = $db->prepare(
-            "SELECT id, username FROM users WHERE username = ? " 
-                . "AND password =  ? LIMIT 1"
+            "SELECT id, username, password FROM users WHERE username = ?"
         );        
         
-        $statement->bind_param("ss", $username, $password);
-        
-        $statement->execute();
-        
+        $statement->bind_param("s", $username);        
+        $statement->execute();        
         $result_set = $statement->get_result();
         $row = $result_set->fetch_assoc();
-        if (! empty($row)) {
+        
+        $passIsCorrect = password_verify($password, $row['password']);
+        
+        if (! empty($row) && $passIsCorrect) {
             $_SESSION['username'] = $row['username'];
             $_SESSION['user_id'] = $row['id'];
             

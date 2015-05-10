@@ -14,6 +14,7 @@ class Validate {
             
             if ($key == 'number') {
                 $value = $this->cleanWhitespaces($value);
+                $value = 
                 $result[$key] = $this->executeValidation($value, $key, 'Phone Number');
             } 
            
@@ -32,12 +33,14 @@ class Validate {
             
             if ( $key == 'password' ) {
                 $value = $this->cleanWhitespaces($value);
-                $result[$key] = $this->executeValidation($value, $key, 'Password');
+                $result[$key] = $this->executeValidation($value, $key, 'Password '
+                        . 'Only words, numbers, under-score, dot and dash are permited.');
             }
             
             if ( $key == 'username' ) {
                 $value = $this->cleanWhitespaces($value);
-                $result[$key] = $this->executeValidation($value, $key, 'Username');
+                $result[$key] = $this->executeValidation($value, $key, 'Username. '
+                        . 'Only words, numbers, under-score, dot and dash are permited');
             }
             
             if ($utils->startsWith($key, 'field')) {
@@ -64,6 +67,7 @@ class Validate {
     public function dataInputValidate( $params ) {
         $result = array();
         foreach ($params as $key => $value) {
+            $
             $result[$key] = htmlspecialchars($value);
         }        
         return $result;
@@ -107,7 +111,8 @@ class Validate {
         if (strlen($val) < DEFAULT_MIN_LENGTH) {
             return false;
         }
-        return true;
+        
+        return !(bool)preg_match('/[^a-zA-Z0-9-_.]+/', $val);
     }
     
     public static function address($val) {

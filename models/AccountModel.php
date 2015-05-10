@@ -8,7 +8,13 @@ class AccountModel extends BaseModel {
     
     public function register( $args ) {
         
-        $result = $this->add( $args );
+        $hash_pass = password_hash($args['password'], PASSWORD_BCRYPT);
+        
+        $argsPrepared = array(
+            'username' => $args['username'],
+            'password' => $hash_pass
+        );
+        $result = $this->add( $argsPrepared );
         
         return $result['success'];
     }

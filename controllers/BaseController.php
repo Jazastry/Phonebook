@@ -11,12 +11,23 @@ class BaseController {
     function __construct($controllerName, $viewFolder) {
         $this->controllerName = $controllerName;
         $this->layoutFolder = DEFAULT_LAYOUT;
-        $this->viewFolder = $viewFolder;
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->isPost = true;
-        }        
-        $this->validate = new Validate();
+        $this->viewFolder = $viewFolder;        
         $this->messages = new Messages();
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            
+            if (empty($_POST['formToken']) || $_POST['formToken'] != $_SESSION['formToken']) {
+                $this->messages->addErrorMessage('Posible CRSF Attack .');
+                exit;
+            }
+            
+            $this->isPost = true;
+        }
+        
+        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+            $_SESSION['formToken'] = hash('md5', microtime());
+        }
+        $this->validate = new Validate();       
         $auth = Auth::get_instance();
         $this->user = $auth->get_logged_user();
         if (! empty( $this->user )) {
@@ -52,38 +63,5 @@ class BaseController {
         }
         $this->redirectToUrl($url);
     }
-    
-//    function addMessage($msg, $type) {
-//        if (!isset($_SESSION['messages'])) {
-//            $_SESSION['messages'] = array();
-//        }
-//        array_push($_SESSION['messages'],
-//            array('text' => $msg, 'type' => $type));
-//    }
-//
-//    function addInfoMessage($msg) {
-//        $this->addMessage($msg, 'info');
-//    }
-//
-//    function addErrorMessage($msg) {
-//        $this->addMessage($msg, 'error');
-//    }
-//    
-//    function hasErrors( $args ) {
-//        foreach ($args as $key => $value) {
-//            if (is_array($value)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//    
-//    function displayFormErrors( $args ) {
-//        foreach ($args as $key => $value) {
-//            if (is_array($value)) {
-//                
-//            }
-//        }
-//    }
 }
 

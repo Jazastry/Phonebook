@@ -10,31 +10,39 @@ class AccountController extends BaseController {
     }
     public function register() {
         $this->title = 'Register';
+        
         if ( $this->isPost ) {
             
-            $username = $_POST['username'];
+            $username = htmlspecialchars( $_POST['username'] );
             $isRegistred = false;            
-            $auth = Auth::get_instance();   
+            $auth = Auth::get_instance();  
+            $userExists = $auth->userExists( $username );
+            $hasNoErrors = false;
             
-            if (! $auth->userExists( $username )) {                
+            if (! $userExists) {                
                 
                 $paramsValidated = $this->validate->form( $_POST );
-                $hasNoErrors = $this->messages->hasNoErrors($paramsValidated);
-                $isRegistred = false;
+                $hasNoErrors = $this->messages->hasNoErrors($paramsValidated);       
                 
                 if ($hasNoErrors) {
-                    $isRegistred = $this->model->add( $paramsValidated );
-                }                
-            }            
+                    
+                    $isRegistred = $this->model->register( $paramsValidated );
+                }
+                
+                if (! $hasNoErrors) {
+                    $this->messages->extractErrors( $paramsValidated ); 
+                }
+            }
             
             if ($isRegistred && $hasNoErrors) {
                 $this->messages->addInfoMessage( 'Successfull register. Now login.' );
                 $this->redirect( 'account', 'login' );                
-            } else {
-                $this->messages->addErrorMessage( 'Register failed.' );
-                $this->messages->extractErrors( $paramsValidated );
             } 
-        }        
+            if ($userExists) {
+                $this->messages->addErrorMessage( 'Register failed. User with username ' 
+                        . $username . ' already exists.');           
+            }
+        }
 
         $this->renderView(__FUNCTION__);
     }

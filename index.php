@@ -45,7 +45,9 @@ if (class_exists($controllerClassName)) {
 if (method_exists($controllerInstance, $method)) {
     call_user_func_array(array($controllerInstance, $method), array($params));
 } else {
-    die("Cannot find method $method in controller $controllerClassName ");
+    $messages->addInfoMessage('Wrong address.');
+    $redirect('/');
+//    die("Cannot find method $method in controller $controllerClassName ");
 }
 
 function __autoload($class_name) {    

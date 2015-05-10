@@ -12,11 +12,6 @@ abstract class BaseModel {
         );
         
         $args = array_merge($defaults, $argsIn);
-        
-        if (! isset($args['table'])) {
-            die('Table not defined.');
-        }
-        
         extract($args);
         
         $this->table = $table;
@@ -48,29 +43,29 @@ abstract class BaseModel {
         ))[0];
     }
     
-    public function add ($element, $tableIn = null) {
+    public function add ( $element, $tableIn = null ) {
         $table = $this->table;
-        if ($tableIn !== null) {
+        if ( $tableIn !== null ) {
             $table = $tableIn;
         }
         
         $keys = array_keys ($element);
         $values = array();
-        
+                
         foreach ( $element as $key => $value ) {
-            $values[] = "'" . $this->db->real_escape_string($value) . "'";
+            $values[] = "'" . $this->db->real_escape_string( $value ) . "'";
         }
         
         $keys = implode($keys, ',');
-        $values = implode( $values, ',');
+        $values = implode( $values, ',');            
         
         $query = " INSERT INTO {$table}($keys) VALUES($values);";
                 
-        $this->db->query($query);
+        $this->db->query( $query );
         $err = $this->db->error;
         $result = array();
         
-        if (! empty($this->db->insert_id)) {            
+        if (! empty( $this->db->insert_id ) ) {            
             $result['entryId'] = $this->db->insert_id;
             $result['success'] = true;
             return $result;
@@ -79,78 +74,83 @@ abstract class BaseModel {
         return $result['success'] = false;
     }
     
-    public function update( $element , $table) {
+    public function update( $element , $table ) {
         
         $query = "UPDATE {$table} SET ";        
         foreach ( $element as $key => $value ) {
             if ( $key === 'id') {
                 continue;
             }            
-            $query .= "$key = '" . $this->db->real_escape_string($value) . "',";
+            $query .= "$key = '" . $this->db->real_escape_string( $value ) . "',";
         }
         
-        $query = rtrim($query, ',');
+        $query = rtrim( $query, ',' );
         
         $query .= " WHERE id = {$element['id']}";
         
         $result = $this->db->query( $query );
         $err = $this->db->error;
         
-        if ($result) {
+        if ( $result ) {
             return true;
         }
         return false;
     }
     
-    public function find($argsIn = array()){
+    public function find( $argsIn = array() ){
         $defaults = array(
             'table' => $this->table,
             'limit' => $this->limit,
             'where' => '',
-            'columns' => '*'
+            'columns' => '*',
+            'order' => ''
         );
         
-        $args = array_merge($defaults, $argsIn);
+        $args = array_merge( $defaults, $argsIn );
         
-        extract($args);
+        extract( $args );
         
         $query = "SELECT {$columns} FROM {$table}";
         
-        if (! empty($where)) {
+        if (! empty( $where ) ) {
             $query .= " WHERE $where";
         }
         
-        if (! empty($limit)) {
-            $query .= " LIMIT $limit";
+        if (! empty( $order ) ) {
+            $query .= " ORDER BY $order";
         }
         
-        $result_set = $this->db->query($query);
+        if (! empty( $limit ) ) {
+            $query .= " LIMIT $limit";
+        }       
         
-        $results = $this->processResults($result_set);
+        $result_set = $this->db->query( $query );
+        
+        $results = $this->processResults( $result_set );
         
         return $results;
     }
     
     public function deleteById( $id, $tableIn = null ) {
         $table = $this->table;
-        if ($tableIn != null) {
+        if ( $tableIn != null ) {
             $table = $tableIn;
         }       
         
         $query = "DELETE FROM " . $table . " WHERE id = ?";
         
-        $statement = $this->db->prepare($query);
+        $statement = $this->db->prepare( $query );
         $err = $this->db->error;
-        $statement->bind_param("i", $id);        
+        $statement->bind_param( "i", $id );        
         $statement->execute();        
         
-        if ($statement->affected_rows > 0) {
+        if ( $statement->affected_rows > 0 ) {
             return true;
         }
         return false;
     }
     
-     public function delete($argsIn = array()){
+     public function delete( $argsIn = array() ){
         $defaults = array(
             'table' => '',
             'where' => ''

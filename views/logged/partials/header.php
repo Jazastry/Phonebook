@@ -15,7 +15,7 @@
         <header>
             <h1>Phone Book</h1>
             <div class="rightSide">
-                <li><h4><?php echo 'Hello ' . $this->user['username'] . '!'?></h4></li>                    
+                <li><h4><?php echo 'Hello ' . htmlspecialchars($this->user['username']) . '!'?></h4></li>                    
             </div>
             <ul>
                 <li><a href="/logged/home">HOME</a></li>

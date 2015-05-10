@@ -8,7 +8,8 @@ class PhonesModel extends BaseModel {
     
     public function getAll($userId) {
         $args = array(
-            'where' => 'user_id = ' . $userId
+            'where' => 'user_id = ' . $userId,
+            'order' => 'name'
         );
         $results = $this->find($args);
         
@@ -90,7 +91,8 @@ class PhonesModel extends BaseModel {
             'table' => 'phones_groups pg '
                     . 'JOIN groups g '
                     . 'ON g.id = pg.group_id',
-            'where' => 'pg.phone_id = ' . $phoneId
+            'where' => 'pg.phone_id = ' . $phoneId,
+            'order' => 'g.name'
         );
         
         return $this->find( $args );
