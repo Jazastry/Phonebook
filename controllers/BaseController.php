@@ -16,15 +16,15 @@ class BaseController {
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
-            if (empty($_POST['formToken']) || $_POST['formToken'] != $_SESSION['formToken']) {
-                $this->messages->addErrorMessage('Posible CRSF Attack .');
-                exit;
-            }
+//            if (empty($_POST['formToken']) || $_POST['formToken'] != $_SESSION['formToken']) {
+//                $this->messages->addErrorMessage('Posible CRSF Attack .');
+//                exit;
+//            }
             
             $this->isPost = true;
         }
         
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $_SESSION['formToken'] = hash('md5', microtime());
         }
         $this->validate = new Validate();       
